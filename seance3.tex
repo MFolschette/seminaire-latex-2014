@@ -1,0 +1,372 @@
+\documentclass{beamer}
+
+\input{preambule}
+
+\title [Séminaire \LaTeX, séance 3]{Séminaire \LaTeX, séance 3: utilisation avancée}
+\date{jeudi 28 février 2013}
+
+
+
+% Exemples de macros
+\newcommand{\ltsname}{Labeled Transition System}
+\newcommand{\abs}[1]{\ensuremath\left|#1\right|}
+\newcommand{\lts}[1][]{\ensuremath\left(Q^{#1}, q_0^{#1}, A_{#1}, \rightarrow_{#1}\right)}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+
+
+\begin{document}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Points abordés durant la séance 3:}
+    \begin{itemize}
+            \item bibliographie, 
+            \item commandes avancées, 
+            \item inclusion de figures à l'aide de différents outils, 
+            \item création d'un diaporama à l'aide de la classe Beamer, 
+            \item vos questions !
+        \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% PART%% %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Bibliographie}
+
+%%%%%%%%%%
+
+\section{BibTeX}
+
+%%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Présentation de BibTeX}
+BibTeX est un outil de gestion de bibliographie.
+
+\medskip
+La \emph{base de données} bibliographique est placée dans un fichier extérieur (\lstinline?.bib?).
+
+\medskip
+On inclut la bibliographie dans le document par les commandes :
+\begin{lstlisting}
+\bibliographystyle{plain}
+\bibliography{nom-biblio}
+\end{lstlisting}
+Il est possible d'inclure plusieurs fichiers \lstinline?.bib? :
+\lstinline?\bibliography{biblio1,biblio2}?.
+
+\medskip
+On crée des références dans le document par la commande : \lstinline?\cite{...}?  \cite{latexcompanion}.
+\end{frame}
+
+%%%%%%%%%%
+
+\section{Exemple}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercice}
+
+Créer un nouveau fichier \lstinline?.bib? nommé \lstinline?biblio.bib? et contenant : 
+
+\begin{lstlisting}
+@article{greenwade93,
+    author  = "Inconnu",
+    title   = "Titre",
+    year    = "1993",
+    journal = "Nom du journal",
+    volume  = "14",
+    number  = "3",
+    pages   = "342--351"
+}
+\end{lstlisting}
+
+Et y faire référence dans votre document principal:
+
+\begin{lstlisting}
+....
+\cite{greenwade93}
+....
+\bibliographystyle{plain} %ou style alpha
+\bibliography{biblio}
+\end{lstlisting}
+
+\end{frame}
+
+
+%%%%%%%%%%
+
+\section{JabRef}
+
+%%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Outils de gestion de bibliographie}
+
+La plupart des bases de données bibliographiques permettent d'exporter une entrée en BibTeX (Google Scholar inclus : Préférences Scholar,  Gestionnaire des bibliographies,  Afficher les liens permettant d'importer des citations dans BibTeX).
+
+\medskip
+Utiliser un outil de gestion de bibliographie est nécessaire:
+\begin{itemize}
+\item JabRef,
+\item Mendeley,
+\item Zotero
+\end{itemize}
+\end{frame}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Jabref (mutli-plateforme)}
+
+\vspace*{-0.5cm}
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/jabref}
+\end{figure}
+
+\vspace*{-0.5cm}
+{\footnotesize Téléchargement: \url{http://jabref.sourceforge.net/}}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% PART%% %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\part{Commandes avancées}
+
+\section{Commandes personnalisées}
+
+\begin{frame}[fragile]
+	\frametitle{Créer ses propres commandes}
+	Pourquoi?
+	\begin{itemize}
+		\item Réutilisation
+		\item Simplification
+	\end{itemize}
+	
+	Définition
+
+	\begin{lstlisting}
+\newcommand{\ltsname}{Labeled Transition System}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\lts}[1][]{\left(Q^{#1},q_0^{#1},A_{#1},\rightarrow_{#1}\right)}
+	\end{lstlisting}
+	Utilisation
+		\begin{itemize}
+	\item \lstinline?\ltsname? $\Rightarrow$ \ltsname
+	\item \lstinline?\abs{\pi}? $\Rightarrow$ $\abs{\pi}$
+	\item \lstinline?\lts? $\Rightarrow$ $\lts$\\
+		\lstinline?\lts[n]? $\Rightarrow$ $\lts[n]$
+	\end{itemize}
+	Restrictions
+	\begin{itemize}
+		\item Pas de chiffres
+		\item Pas de @
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Redéfinir des commandes}
+
+	\begin{lstlisting}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+	\end{lstlisting}
+	Utilisation
+		\begin{itemize}
+	\item \lstinline?\vec{AB}? $\Rightarrow$ $\vec{AB}$
+	\end{itemize}
+
+\end{frame}
+
+\section{Comprendre la compilation}
+
+\begin{frame}
+	\frametitle{Fichiers auxiliaires}
+	\begin{description}
+	\item[log] fichier où \LaTeX{} écrit tout un tas d'informations sur la dernière compilation
+	\item[aux] fichier auxiliaire: stocke les références, citations, numéros de page, etc.
+	\item[toc] fichier contenant la table des matières
+	\item[lof] fichier contenant la liste des figures
+	\item[lot] fichier contenant la liste des tables
+	\item[bbl] fichier contenant la bibliographie
+	\end{description}
+\end{frame}
+
+\setbeamercovered{transparent}
+\begin{frame}
+\frametitle{Cycle de compilation}
+\begin{center}
+    \begin{tikzpicture}[every node/.style={shape=rectangle, shape aspect=1.61, rounded corners},
+                        every path/.style={thick, >=triangle 60},
+                        file/.style={minimum height=0.8cm, minimum width=1.29, fill=blue!20, draw=blue},
+                        bin/.style={minimum width=2.42cm, minimum height=1.5cm, fill=red!20, draw=red}]
+                        \only<1, 3-4>{\node[bin] (bin) at (0,0) {\LaTeX{}};}
+                        \only<2>{\node[bin] (bin) at (0,0) {Bib\TeX{}};}
+                        \onslide<1-4>{\node[file] (tex) at (-3, 1) {\texttt{.tex}};}
+                        \onslide<1-4>{\node[file] (bib) at (-3, 0) {\texttt{.bib}};}
+                        \onslide<1-4>{\node[file] (bst) at (-3, -1) {\texttt{.bst}};}
+
+                        \onslide<3-4>{\node[file] (pdf) at (3,0.75) {\texttt{.pdf}};}
+                        \onslide<1-4>{\node[file] (log) at (3, -0.75) {\texttt{.log}};}
+
+                        \onslide<2-4>{\node[file] (aux) at (-1.5, 2) {\texttt{.aux}};}
+                        \onslide<3-4>{\node[file] (bbl) at (0, 2) {\texttt{.bbl}};}
+                        \onslide<3-4>{\node[file] (blg) at (1.5, 2) {\texttt{.blg}};}
+
+                        \onslide<4>{\node[file] (toc) at (-1.5, -2) {\texttt{.toc}};}
+                        \onslide<4>{\node[file] (lof) at (0, -2) {\texttt{.lof}};}
+                        \onslide<4>{\node[file] (lot) at (1.5, -2) {\texttt{.lot}};}
+
+                        \only<1>{
+                            \draw[->] (tex) -- (bin);
+                            \draw[->] (bin) -- (log);
+                            \draw[->] (bin) -- (pdf);
+                            \draw[->] (bin) -- (aux);
+                        }
+                        \only<2>{
+                            \draw[->] (bib) -- (bin);
+                            \draw[->] (aux) -- (bin);
+                            \draw[->] (bin) -- (blg);
+                            \draw[->] (bin) -- (bbl);
+                        }
+                        \only<3>{
+                            \draw[->] (tex) -- (bin);
+                            \draw[<->] (aux) -- (bin);
+                            \draw[->] (bst) -- (bin);
+                            \draw[->] (bbl) -- (bin);
+                            \draw[->] (bin) -- (log);
+                            \draw[->] (bin) -- (pdf);
+                            \draw[->] (bin) -- (toc);
+                            \draw[->] (bin) -- (lof);
+                            \draw[->] (bin) -- (lot);
+                        }
+                        \only<4>{
+                            \draw[->] (tex) -- (bin);
+                            \draw[<->] (aux) -- (bin);
+                            \draw[->] (bst) -- (bin);
+                            \draw[->] (bbl) -- (bin);
+                            \draw[->] (bin) -- (log);
+                            \draw[->] (bin) -- (pdf);
+                            \draw[<->] (bin) -- (toc);
+                            \draw[<->] (bin) -- (lof);
+                            \draw[<->] (bin) -- (lot);
+                        }
+    \end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Erreurs de compilation courantes}
+
+    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+| ! Too many }'s.
+| l.6 \date December 2004} \end{lstlisting}
+    Accolades non balancées
+
+    \medskip
+    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+| ! Undefined control sequence.
+| l.6 \dtae
+| {December 2004} \end{lstlisting}
+    Faute de frappe dans une commande, ou package manquant
+
+
+    \medskip
+    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+| ! Missing $ inserted \end{lstlisting}
+Caractère math utilisé hors du mode math (ex: \_)
+
+\end{frame}
+
+\setbeamercovered{invisible}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% SECTION %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Autres éditeurs \LaTeX}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Texniccenter}
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/Texniccenter}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.texniccenter.org/}}
+
+\end{frame}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{LyX}
+
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{img/LyXScreen_Linux_en}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.lyx.org/}}
+
+\end{frame}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Texmaker}
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/TexmakerView}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.xm1math.net/texmaker/}}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% PART%% %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% TikZ
+\input{seance3_tikz}
+
+%%% Beamer
+\input{seance3_beamer}
+
+
+
+%%% Bibliographie %%%
+
+\begin{frame}
+  \frametitle{Bibliographie}
+
+\nocite{*}
+\bibliographystyle{abbrv-fr}
+\bibliography{latex}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% FIN DU DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% ( NON PRISE EN COMPTE DE LA SUITE ) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

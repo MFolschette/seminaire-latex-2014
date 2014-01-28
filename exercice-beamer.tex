@@ -1,0 +1,37 @@
+%% Exemple simple de diaporama Beamer
+
+\documentclass{beamer}
+
+\usepackage[french]{babel}    % Langue française
+\usepackage[utf8]{inputenc}   % Encodage d'entrée : UTF-8
+
+\usetheme{Madrid}             % Thème Beamer : Madrid
+\usecolortheme{default}       % Thème de couleurs par défaut
+
+\title{Présentation de ma thèse}
+\author{Prénom Nom}
+\institute[LDC]{Laboratoire des Chatons}
+
+
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+
+\section{À propos de moi}
+
+\begin{frame}
+  \frametitle{Ce que j'aime}
+  \begin{itemize}
+    \item Les chatons,
+    \pause
+    \item le jus de raisin,
+    \pause
+    \item etc.
+  \end{itemize}
+\end{frame}
+
+\end{document}

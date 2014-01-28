@@ -1,0 +1,246 @@
+%%% Présentation de TikZ
+
+\part{Inclusion de figures à l'aide de PGF/TikZ}
+
+\section{Présentation de PGF/TikZ}
+
+\begin{frame}
+  \frametitle{PGF/TikZ : du dessin vectoriel en \LaTeX}
+
+Qu'est-ce que PGF/TikZ ?
+\begin{itemize}
+  \item PGF est un langage complet et compliqué de dessin vectoriel,
+  \item TikZ est une surcouche plus simple pour utiliser PGF.
+\end{itemize}
+
+\bigskip
+Ils permettent de dessiner des figures facilement. Beaucoup d'avantages :
+\begin{itemize}
+  \item les figures sont intégrés au document \LaTeX{} (pas de fichier externe),
+  \item dessin vectoriel : toujours lisse, quel que soit le niveau de zoom,
+  \item très riche, beaucoup d'exemples disponibles faciles à reprendre.
+\end{itemize}
+
+\bigskip
+Inconvénients :
+\begin{itemize}
+  \item parfois difficile à prendre en main,
+  \item peut alourdir la compilation et le fichier final,
+  \item ne permet pas de tout faire (mais presque).
+\end{itemize}
+\end{frame}
+
+
+
+\section{Quelques exemples avec TikZ}
+
+\input{seance3_tikz_ex}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \tikzexa
+    \caption{\footnotesize Modèle d'architecture --- TEXample.net \cite{tikzandpgfexamples}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \tikzexc
+    \caption{\footnotesize Graphe simple --- TEXample.net \cite{tikzandpgfexamples}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \scalebox{0.7}{\tikzexe}
+    \caption{\footnotesize Circuit électrique --- TEXample.net \cite{tikzandpgfexamples}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \scalebox{0.7}{\tikzexd}
+    \caption{\footnotesize Incidence oblique --- TEXample.net \cite{tikzandpgfexamples}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \scalebox{0.7}{\tikzexb}
+    \caption{\footnotesize Microscope électronique à transmission --- TEXample.net \cite{tikzandpgfexamples}}
+  \end{figure}
+\end{frame}
+
+
+
+\section{Utilisation de TikZ}
+
+\begin{frame}[fragile]
+  \frametitle{Préambule}
+
+TikZ doit être chargé dans le préambule :
+\lstinline?\usepackage{tikz}?
+
+\medskip
+On peut aussi charger des bibliothèques propres à TikZ dans le préambule avec :
+\lstinline?\usetikzlibrary{bibliotheques}?,
+ce qui permet d'utiliser :
+\begin{itemize}
+  \item de nouvelles formes de pointes de flèches (\lstinline?arrows?),
+  \item des dégradés (\lstinline?shadings?),
+  \item des styles de lignes (\lstinline?decorations.pathmorphing?), ...
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Création d'une figure}
+
+\bigskip
+Dans le document, on définit une image TikZ à l'aide de l'environnement \lstinline?tikzpicture?,
+souvent inclus dans une \lstinline?figure? :
+
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    ...
+    ...    % Contenu de l'image
+    ...
+  \end{tikzpicture}
+  \caption{...}
+\end{figure}
+\end{lstlisting}
+\end{frame}
+
+
+
+% Morceaux de la figure d'exemple (pour éviter les copier-coller)
+\def \tikzexnodes
+{
+\node[circle, fill=yellow, draw]
+  (rond) {1};
+\node[ellipse, fill=red!50, right of=1, node distance=3cm]
+  (ellipse) {Une ellipse};
+\node[diamond, fill=blue!50, draw=blue, thick, left of=1, node distance=2cm]
+  (diamantvide) {};
+}
+
+\def \tikzexedges
+{
+\path[->] (rond) edge (ellipse);
+\path[o->, bend right] (rond) edge (diamantvide);
+\path[o->>, bend right] (diamantvide) edge
+  node[below, fill=green!30] (retour) {retour}
+  (rond);
+\path[-, bend right] (retour.east) edge (rond.south);
+}
+
+\begin{frame}[fragile,t]
+  \frametitle{Description de l'image avec TikZ}
+
+\begin{figure}
+  \scalebox{0.6}{\tikzexc}
+\end{figure}
+
+Une figure TikZ est constituée d'éléments définis à l'aide de commandes :
+
+\begin{lstlisting}
+  \commande[param£\`e£tres] ... suite de la commande ... ;
+\end{lstlisting}
+
+Par exemple, un graphe est composé de nœuds et d'arcs entre ces nœuds.
+Tous sont définis à l'aide de commandes TikZ.
+\end{frame}
+
+\begin{frame}[fragile, t]
+  \frametitle{Exemple : un graphe simple}
+
+\begin{figure}
+  \begin{tikzpicture}
+    \tikzexnodes
+  \end{tikzpicture}
+\end{figure}
+
+On définit un nœud avec la commande \lstinline?\node? et on peut spécifier :
+\medskip
+\begin{itemize}
+  \item le nom interne \lstinline?(nom)? et l'étiquette visible \lstinline?{etiquette}?
+  \item la forme \quad \lstinline?circle?, \lstinline?ellipse?, \lstinline?square?, \lstinline?diamond?
+  \item le type de ligne et la couleur de fond
+  \item la position (absolue ou par rapport aux autres nœuds)
+\end{itemize}
+
+% Note : « n££ode » permet uniquement d'écrire « node » sans le colorer das le listing
+\begin{lstlisting}
+\node[circle, fill=yellow, draw]
+  (rond) {1};
+\node[ellipse, fill=red!50, right of=1, n££ode distance=3cm]
+  (ellipse) {Une ellipse};
+\node[diamond, fill=blue!50, draw=blue, thick, left of=1, n££ode distance=2cm]
+  (diamantvide) {};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, t]
+  \frametitle{Exemple : un graphe simple}
+
+\begin{figure}
+  \begin{tikzpicture}
+    \tikzexnodes
+    \tikzexedges
+  \end{tikzpicture}
+\end{figure}
+
+On définit ensuite un arc entre deux nœuds avec la commande
+
+\begin{lstlisting}
+    \path[£\meta{options}£] (£\meta{origine}£) edge (£\meta{cible}£);
+\end{lstlisting}
+
+On peut définir le type de flèche (\lstinline?->?, \lstinline?o->?, \lstinline?-?),
+la courbure (\lstinline?bend right?),
+etc.
+
+\begin{lstlisting}
+\path[->] (rond) edge (ellipse);
+\path[o->, bend right] (rond) edge (diamantvide);
+\end{lstlisting}
+
+On peut placer un nouveau nœud sur un arc avec le mot-clef \lstinline?node?.
+
+\begin{lstlisting}
+\path[o->>, bend right] (diamantvide) edge
+  node[below, fill=green!30] (retour) {retour}
+  (rond);
+\path[-, bend right] (retour.east) edge (rond.south);
+\end{lstlisting}
+\end{frame}
+
+
+
+\section{Conclusion sur TikZ}
+
+\begin{frame}
+  \frametitle{Réutiliser au maximum}
+
+Pour produire de belles figures TikZ, le mieux est de chercher des exemples et de les modifier.
+
+\begin{center}
+Pour cela : \Huge Internet !
+\end{center}
+
+On pourra notamment se servir des exemples de TEXample.net \cite{tikzandpgfexamples}.
+
+\bigskip
+De plus, il est possible de :
+\begin{itemize}
+  \item définir des thèmes pour des figures semblables,
+  \item d'utiliser des bibliothèques pour des diagrammes répandus (UML, schémas électriques...).
+\end{itemize}
+\end{frame}

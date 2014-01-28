@@ -1,0 +1,92 @@
+%%% Fichier de préambule avec toutes les définitions communes aux trois diaporamas
+
+% Packages
+\usepackage[utf8]{inputenc}  % Encodage : UTF-8
+\usepackage[T1]{fontenc}     % Caractères français
+
+\usepackage[french]{babel}   % Langue française
+
+\usepackage{amsmath}         % Maths améliorées
+\usepackage{amssymb}         % Symboles mathématiques
+\usepackage{amsfonts}        % Polices mathématiques
+\usepackage{graphicx}        % Inclusion d'images (PNG, GIF, PDF)
+\usepackage{array}           % Tableaux améliorés
+\usepackage[normalem]{ulem}  % Styles barré et souligné
+\usepackage{listings, multicol, xcolor} % Listings (code source)
+\usepackage{lmodern}         % Police d'écriture
+\usepackage{url, hyperref}   % Liens hypertexte
+
+\usepackage{tikz}            % TikZ : figures avancées
+\usepackage{circuitikz}      % Circuits électriques en TikZ
+% Diverses bibliothèques pour TikZ
+\usetikzlibrary{chains, calc, decorations.pathmorphing, fadings, shadings, arrows, decorations.pathreplacing, shapes} 
+
+
+
+% Commande \meta pour les listings
+\newcommand{\meta}[1]{\ensuremath\langle\itshape#1\ensuremath\rangle}
+
+% Paramètres des listings
+\lstset{
+upquote=false,
+columns=flexible,
+basicstyle=\ttfamily\scriptsize,
+language={[LaTeX]TeX},
+identifiersstyle=\color{green},
+emphstyle=\color{blue},
+keywordstyle=\color{blue},
+directivestyle=\color{blue},
+commentstyle=\color{gray},
+    inputencoding=utf8,
+literate={eacute}{\'e}1,    % Permet de faire des accents dans un listing avec £\'e£, £\`e£, £\`a£
+    {eagrave}{\`e}1,
+    {aagrave}{\`a}1,
+    escapechar={£},
+    moretexcs={meta},
+morekeywords={              % Mots-clefs supplémentaires
+  part,chapter,subsection,subsubsection,
+  frontmatter,mainmatter,backmatter,
+  tableofcontents,listoffigures,listoftables,titlepage,
+  includegraphics,includepdf,
+  dddot,ddddot,
+  frametitle,framesubtitle,
+  pause,only,uncover,
+  usetheme,usecolortheme,
+  institute,maketitle,
+  usetikzlibrary,
+  node,path,
+  commande
+}
+}
+
+
+
+% Thème Beamer
+\usetheme{CambridgeUS}
+
+
+
+% Auteurs et licence
+\author[Folschette, Jubien, Tanguy]{Maxime \textsc{Folschette\up{1} } \and Anthony \textsc{Jubien\up{2}} \and Julien \textsc{Tanguy\up{3}} \\ 
+{\scriptsize  \up{1} IRCCyN équipe MeForBio \\
+\up{2} IRCCyN équipe Robotique et ONERA Toulouse \\
+\up{3} IRCCyN équipe Systèmes Temps Réels \\
+maxime.folschette, anthony.jubien, julien.tanguy @irccyn.ec-nantes.fr} }
+\institute[AED]{Association des Étudiants en Doctorat de l'ECN (AED)  \\ 
+Document sous licence Creative Commons BY 3.0 FR \\
+http://creativecommons.org/licenses/by/3.0/fr/}
+
+
+
+% Suppression des icônes de navigation
+\setbeamertemplate{navigation symbols}{}
+
+% Sommaire au début de chaque partie
+\AtBeginPart{%
+    \frame{\partpage}
+
+    \begin{frame}
+        \frametitle{Plan}
+        \tableofcontents
+    \end{frame}
+}
