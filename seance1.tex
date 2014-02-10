@@ -567,7 +567,7 @@ Essayez d'utliser les commandes \lstinline?\titlepage?, \lstinline?\clearpage? e
 \frametitle{Quelques règles}
 
 \begin{itemize}
-\item un saut de paragraphe est produit par une ligne vierge
+\item Un saut de paragraphe est produit par une ligne vierge
 \item\LaTeX{} ignore les sauts de ligne et les espaces multiples (mise en forme automatique à la compilation)
 \end{itemize}
 
@@ -580,7 +580,9 @@ Essayez d'utliser les commandes \lstinline?\titlepage?, \lstinline?\clearpage? e
 \begin{lstlisting}
 | Premier paragraphe.
 | 
-| Deuxi£\`e£me paragraphe !
+| Deuxi£\`e£me
+| paragraphe
+| !
 | 
 | 
 | 
@@ -588,13 +590,15 @@ Essayez d'utliser les commandes \lstinline?\titlepage?, \lstinline?\clearpage? e
 \end{lstlisting}
 
 \end{column}
-\begin{column}{.5\textwidth}
+\begin{column}{.45\textwidth}
 %\columnbreak
 
-\myex{
+\myex{\rmfamily
 Premier paragraphe.
 
-Deuxi\`eme paragraphe !
+Deuxi\`eme
+paragraphe
+!
 
 
 
@@ -659,7 +663,7 @@ Tailles caractères possibles :
 \end{lstlisting}
 
 \end{column}
-\begin{column}{.2\textwidth}
+\begin{column}{.18\textwidth}
 
 \myex{
 \Large Large \normalsize

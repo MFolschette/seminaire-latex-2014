@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}     % Caractères français
 
 \usepackage[french]{babel}   % Langue française
+\frenchbsetup{PartNameFull=false}  % Nécessaire pour des parties correctement nommées dans un Beamer en français
 
 \usepackage{amsmath}         % Maths améliorées
 \usepackage{amssymb}         % Symboles mathématiques
@@ -15,6 +16,7 @@
 \usepackage{listings, multicol, xcolor} % Listings (code source)
 \usepackage{lmodern}         % Police d'écriture
 \usepackage{url, hyperref}   % Liens hypertexte
+\usepackage{calc}            % Pour la commance \widthof
 
 \usepackage{tikz}            % TikZ : figures avancées
 \usepackage{circuitikz}      % Circuits électriques en TikZ
@@ -93,18 +95,20 @@ Document sous licence Creative Commons BY 3.0 FR \\
 }
 
 % Boîte d'exemple
-\definecolor{couleurexemple}{RGB}{200,200,200}
-\newcommand{\myex}[1]{%
-%\setbeamercolor{postit}{fg=black,bg=couleurexemple}
-%\begin{beamercolorbox}[sep=0.5em]{postit}
-%\pbox{.4\textwidth}{%
-%\colorbox{couleurexemple}{%
-\colorbox{green!20}{%
-%\fbox{%
-\begin{minipage}{.8\textwidth}%
+%\definecolor{couleurexemple}{RGB}{200,200,200}
+\colorlet{couleurexemple}{green!20}
+
+\newcommand{\myexgenerique}[3]{%
+\colorbox{#2}{\begin{minipage}{#3\textwidth}%
 #1
-\end{minipage}%
-%}
-}
-%\end{beamercolorbox}
-}
+\end{minipage}}}
+
+\newcommand{\myexsize}[2]{\myexgenerique{#2}{couleurexemple}{#1}}
+\newcommand{\myex}[1]{\myexsize{1}{#1}}
+\newcommand{\myextrueinline}[1]{\colorbox{couleurexemple}{#1}}
+\newcommand{\myexinline}[1]{\quad\myextrueinline{#1}}
+
+% \newcommand{\myex}[1]{%
+% \colorbox{green!20}{\begin{minipage}{.8\textwidth}%
+% #1
+% \end{minipage}}}
