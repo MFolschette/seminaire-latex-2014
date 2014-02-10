@@ -91,3 +91,20 @@ http://creativecommons.org/licenses/by/3.0/fr/}
         \tableofcontents
     \end{frame}
 }
+
+% Boîte d'exemple
+\definecolor{couleurexemple}{RGB}{200,200,200}
+\newcommand{\myex}[1]{%
+%\setbeamercolor{postit}{fg=black,bg=couleurexemple}
+%\begin{beamercolorbox}[sep=0.5em]{postit}
+%\pbox{.4\textwidth}{%
+%\colorbox{couleurexemple}{%
+\colorbox{green!20}{%
+%\fbox{%
+\begin{minipage}{.8\textwidth}%
+#1
+\end{minipage}%
+%}
+}
+%\end{beamercolorbox}
+}

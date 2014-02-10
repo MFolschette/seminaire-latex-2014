@@ -140,20 +140,24 @@
 
 \section{Installation} 
 
-\begin{frame}{Distribution \LaTeX}
+\newcommand{\bul}{$\Rightarrow$\ }
+
+\begin{frame}{Distributions \LaTeX}
     \begin{block}{Windows \includegraphics[width=0.6 cm]{img/logo_win7} }
         \begin{description}
-            \item[Distribution] MiK\TeX{} \url{http://miktex.org}
-            \item[Éditeur] Texmaker \url{http://www.xm1math.net/texmaker/index_fr.html}
+            \item[Distribution] MiK\TeX{} \bul \url{http://miktex.org}
+            \item[Éditeur] Texmaker \bul \footnotesize\url{http://www.xm1math.net/texmaker/index_fr.html}
         \end{description}
     \end{block}
     \begin{block}{Mac OS \includegraphics[width=0.6 cm]{img/logo_apple} }
-        Mac\TeX{} \url{http://tug.org/mactex} (distribution et éditeur)
+        \begin{description}
+            \item[Distribution \& éditeur] Mac\TeX{} \bul \url{http://tug.org/mactex}
+        \end{description}
     \end{block}
     \begin{block}{Linux \includegraphics[width=0.6 cm]{img/logo_linux}}
         \begin{description}
-            \item[Distribution] TeXlive (installer les paquets \texttt{texlive}, \texttt{cm-super})
-            \item[Éditeur] Kile (paquet \texttt{kile})
+            \item[Distribution] TeXlive \bul installer les paquets \texttt{texlive}, \texttt{cm-super}
+            \item[Éditeur] Kile \bul installer le paquet \texttt{kile}
         \end{description}
     \end{block}
 \end{frame}
@@ -189,7 +193,7 @@
 \includegraphics[width=9cm]{img/mactex_1}
 \end{figure}
 
-{\footnotesize image disponible sur http://trondlossius.no/articles/969-mactex-2009}
+{\footnotesize Image depuis \url{http://trondlossius.no/articles/969-mactex-2009}}
 
 \end{frame}
 
@@ -202,7 +206,7 @@
 \includegraphics[width=10cm]{img/texlive_1}
 \end{figure}
 
-{\footnotesize image disponible sur http://flashinformatique.epfl.ch/spip.php?article2315}
+{\footnotesize Image depuis \url{http://flashinformatique.epfl.ch/spip.php?article2315}}
 
 \end{frame}
 
@@ -294,7 +298,7 @@ Intérêt ?
         Il existe plusieurs codages, les plus connus étant:
         \begin{description}
             \item[ascii] Codage basé sur l'alphabet anglais.
-            \item[ISO 8859-1] aussi appelé latin-1, codage reprenant le codage ascii, étendu aux langues européennes
+            \item[ISO 8859-1] Aussi appelé latin-1, codage reprenant le codage ascii, étendu aux langues européennes
             \item[utf-8] Codage standard regroupant un grand nombre de langues
         \end{description}
     \end{block}
@@ -325,7 +329,7 @@ Intérêt ?
     \end{block}
     \begin{block}{Options de classe}
         \begin{itemize}
-            \item \textbf{Xpt} : changer la taille des caractères
+            \item \textbf{Xpt} : changer la taille des caractères à \textbf{X}
             \item \textbf{a4paper}: marges pour l'impression en A4
             \item \textbf{twoside}: impression recto-verso
         \end{itemize}
@@ -339,14 +343,14 @@ Intérêt ?
     \begin{block}{La classe \texttt{book}:}
         \begin{itemize}
  \item dispose d'une page de titre autonome, suivie d'une page blanche,
- \item peut se décomposer en parties, chapitres, sections, sous-sections, sous-sous-sections, paragraphes et sous-paragraphes.
- \item   Chaque partie et chapitre commence sur une page impaire,
-   \item  les marges sont grandes pour faciliter la lecture.
+ \item peut se décomposer en parties, chapitres, sections, sous-sections, sous-sous-sections, paragraphes et sous-paragraphes,
+ \item chaque partie et chapitre commence sur une page impaire,
+   \item les marges sont grandes pour faciliter la lecture.
         \end{itemize}
     \end{block}
     \begin{block}{La classe \texttt{report} est similaire à la classe  \texttt{book} sauf que:}
         \begin{itemize}
-            \item  les chapitres ne commencent pas nécessairement en page impaire,
+            \item les chapitres ne commencent pas nécessairement en page impaire,
             \item dispose d'un environnement spécifique pour la mise en forme automatique d'un résumé.
         \end{itemize}
     \end{block}
@@ -358,7 +362,7 @@ Intérêt ?
     \frametitle{Classe \texttt{article} et \texttt{proc}}
     \begin{block}{Comparé au classes \texttt{book} et \texttt{report} }
         \begin{itemize}
-    \item  a son titre sur la même page que le début du texte,
+     \item le titre est sur la même page que le début du texte,
      \item possède des marges étroites,
      \item ne peut pas contenir de chapitre.
         \end{itemize}
@@ -422,28 +426,28 @@ Intérêt ?
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-    \frametitle{Paquets \texttt{inputenc} et : \texttt{babel} }
+    \frametitle{Paquets \texttt{inputenc} et \texttt{babel} }
 
     \begin{block}{Paquet \texttt{inputenc}  }
         \begin{itemize}
     \item  permet l'utilisation aisée des caratères accentués,
      \item est lié à une option d'encodage de caractères,
-     \item Pour un documents en français: 
-        \end{itemize}
+     \item pour un documents en français :
 \begin{lstlisting} 
 \usepackage[latin1]{inputenc} 
 \end{lstlisting}
+        \end{itemize}
     \end{block}
 
     \begin{block}{Paquet \texttt{babel}  }
         \begin{itemize}
     \item  permet de définir la langue du document,
      \item utilise pour la génération de l'index, table des matière...
-     \item Pour un documents en français: 
-        \end{itemize}
+     \item pour un documents en français :
 \begin{lstlisting} 
 \usepackage[francais]{babel}
 \end{lstlisting}
+        \end{itemize}
     \end{block}
 
 \end{frame}
@@ -451,12 +455,12 @@ Intérêt ?
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-    \frametitle{Paquet \texttt{graphicx} :}
+    \frametitle{Paquet \texttt{graphicx}}
 
     \begin{block}{Le paquet \texttt{graphicx} :  }
         \begin{itemize}
-    \item  permet l'utilisation de commandes spécifiques pour la gestion des figures (échelle taille, rotation, ect...),
-     \item s'utilise avec la commande \texttt{ includegraphics}.
+    \item  permet l'utilisation de commandes spécifiques pour la gestion des figures (échelle taille, rotation, etc.),
+     \item s'utilise avec la commande \texttt{includegraphics}.
         \end{itemize}
     \end{block}
 
@@ -466,7 +470,7 @@ Intérêt ?
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-    \frametitle{Paquets \texttt{amsfonts} et : \texttt{amsmath} }
+    \frametitle{Paquets \texttt{amsfonts} et \texttt{amsmath} }
 
     \begin{block}{Le paquet \texttt{amsfonts}  }
         \begin{itemize}
@@ -492,21 +496,21 @@ Intérêt ?
 \frametitle{Caractères spéciaux}
 
 10 caractères spéciaux:
-\begin{lstlisting}
+\begin{lstlisting}[language=Caml]
 \ $ & % # ^ _ { }
 \end{lstlisting}
 
 Ils peuvent être utilisés dans le texte:
 \begin{lstlisting}
-\textbackslash \$ \& \% \# \_ \{ \}
+\textbackslash \$ \& \£\%£ \# \_ \{ \}
 \end{lstlisting}
 
-Les utilisés principales:
+Leurs utilités principales:
 \begin{itemize}
-\item\lstinline?%? indique que le restant de la ligne est en commentaire
-\item\lstinline?$\dots$? indique une formule mathématique dans du texte
-\item\lstinline?{\dots}? indique un groupe (groupe de caractères/mots)
-\item\lstinline?\ \dots? indique le début d'une séquence de contrôle
+\item\lstinline[language=Caml]?%? indique que le restant de la ligne est en commentaire
+\item\lstinline?$...$? indique une formule mathématique dans du texte
+\item\lstinline?{ ... }? indique un groupe (groupe de caractères/mots)
+\item\lstinline?\...? indique le début d'une séquence de contrôle
 \end{itemize}
 
 \end{frame}
@@ -514,21 +518,21 @@ Les utilisés principales:
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{Chapitres, sections, sous-sections\dots}
+\frametitle{Chapitres, sections, sous-sections...}
 
 
 Les commandes sont en début de chaque découpage
 \begin{itemize}
 \item\lstinline?\part{titre}?: partie
-\item\lstinline?\chapter{titre}?: chapitre (uniquement pour les classes \texttt{report} et \texttt{book})
+\item\lstinline?\chapter{titre}?: chapitre (uniquement pour \texttt{report} et \texttt{book})
 \item\lstinline?\section{titre}?: section
 \item\lstinline?\subsection{titre}?: sous-section
 \item\lstinline?\subsubsection{titre}?: sous-sous-section
 \end{itemize}
 
 
-Essayez d'utliser ces différentes commandes sous votre document \LaTeX  
- avec les classes  \texttt{article} et  \texttt{book} 
+Essayez d'utliser ces différentes commandes sur votre document \LaTeX{} 
+ avec les classes  \texttt{article} et  \texttt{book}.
 
 \end{frame}
 
@@ -551,7 +555,7 @@ Essayez d'utliser ces différentes commandes sous votre document \LaTeX
 \item \dots
 \end{itemize}
 
-Essayez d'utliser les commandes   \texttt{titlepage}  \texttt{clearpage}  et \texttt{tableofcontents}  sous votre document \LaTeX 
+Essayez d'utliser les commandes \lstinline?\titlepage?, \lstinline?\clearpage? et \lstinline?\tableofcontents? dans votre document \LaTeX.
 
 \end{frame}
 
@@ -567,25 +571,40 @@ Essayez d'utliser les commandes   \texttt{titlepage}  \texttt{clearpage}  et \te
 \item\LaTeX{} ignore les sauts de ligne et les espaces multiples (mise en forme automatique à la compilation)
 \end{itemize}
 
+%\setlength{\columnseprule}{.5pt}
+%\begin{multicols}{2}
+\begin{columns}
+\begin{column}{.45\textwidth}
+
 % Note : Les « £\`e£ » permettent de mettre des accents dans les listings
 \begin{lstlisting}
 | Premier paragraphe.
 | 
-| Deuxi£\`e£me paragraphe apr£\`e£s deux sauts de ligne.
+| Deuxi£\`e£me paragraphe !
 | 
 | 
-| Dernier      paragraphe    plus      loin.
+| 
+| Dernier      paragraphe    plus loin.
 \end{lstlisting}
 
-donne:
+\end{column}
+\begin{column}{.5\textwidth}
+%\columnbreak
 
-\medskip
+\myex{
 Premier paragraphe.
 
-Deuxième paragraphe après deux sauts de ligne.
+Deuxi\`eme paragraphe !
 
 
-Dernier      paragraphe    plus      loin.
+
+Dernier      paragraphe    plus loin.
+}
+
+
+\end{column}
+\end{columns}
+%\end{multicols}
 
 \medskip
 
@@ -598,23 +617,94 @@ Regardez sur votre document \LaTeX{} l'effet des sauts de ligne...
 \begin{frame}[fragile]
 \frametitle{Taille et style des caractères}
 
-Différentes tailles et styles de caractères sont possibles:
-\begin{lstlisting}
-\tiny, \scriptsize, \footnotesize, \small, \normalsize,
-\large, \Large, \LARGE, \huge, \Huge
-\end{lstlisting}
+Tailles caractères possibles :
 
-\tiny Aze \normalsize \scriptsize Aze \normalsize \footnotesize Aze \normalsize \small Aze \normalsize \normalsize Aze \normalsize
-
-\large Aze \normalsize\Large Aze \normalsize\LARGE Aze \normalsize \huge Aze \normalsize \Huge Aze \normalsize
+\begin{columns}
+\begin{column}{.33\textwidth}
 
 \begin{lstlisting}
-\textbf{gras} \textit{italique} \textsc{majuscules}
+\tiny tiny
+\scriptsize scriptsize
+\footnotesize footnotesize
+\small small
+\normalsize normalsize
+\large large
 \end{lstlisting}
 
-\textbf{Aze } \textit{Aze } \textsc{Aze }
+\end{column}
+\begin{column}{.18\textwidth}
 
-Regardez sur votre document \LaTeX   l'effet des différentes tailles et styles de caractères.
+\myex{
+\tiny tiny
+
+\scriptsize scriptsize
+
+\footnotesize footnotesize
+
+\small small
+
+\normalsize normalsize
+
+\large large \normalsize
+}\vrule
+
+\end{column}
+\begin{column}{.15\textwidth}
+
+\begin{lstlisting}
+\Large Large
+\LARGE LARGE
+\huge huge
+\Huge Huge
+\end{lstlisting}
+
+\end{column}
+\begin{column}{.2\textwidth}
+
+\myex{
+\Large Large \normalsize
+
+\LARGE LARGE \normalsize
+
+\huge huge \normalsize
+
+\Huge Huge\normalsize}
+
+\end{column}
+\end{columns}
+
+\medskip
+Styles de caractères possibles :
+
+\begin{columns}
+\begin{column}{.45\textwidth}
+
+\begin{lstlisting}
+\textbf{Gras}
+\textit{Italique}
+\textsc{Majuscules}
+\underline{Soulign£\'e£}
+\end{lstlisting}
+
+\end{column}
+\begin{column}{.45\textwidth}
+
+\myex{
+\textbf{Gras}
+
+\textit{Italique}
+
+\textsc{Majuscules}
+
+\underline{Soulign\'e}
+}
+
+\end{column}
+\end{columns}
+
+\medskip
+
+Regardez sur votre document \LaTeX{}   l'effet des différentes tailles et des différents styles de caractères.
 
 \end{frame}
 
@@ -629,13 +719,13 @@ Regardez sur votre document \LaTeX   l'effet des différentes tailles et styles 
 
 \begin{lstlisting}
 \begin{nom-environnement}
-...
-...    % Contenu de l'environnement
-...
+  ...
+  ...    % Contenu de l'environnement
+  ...
 \end{nom-environnement}
 \end{lstlisting}
 
-Permet de définir le début de la fin d'un environnement (figures, équations mathématiques, ect\dots)
+Permet de définir le début de la fin d'un environnement (figures, équations mathématiques, etc.)
 \end{frame}
 
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
