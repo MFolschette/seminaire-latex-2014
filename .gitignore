@@ -13,3 +13,5 @@
 *.tex~
 *.fls
 *.fdb_latexmk
+*.kilepr
+

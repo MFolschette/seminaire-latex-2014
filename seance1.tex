@@ -86,17 +86,32 @@
 
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Comparaison visuelle}
+\begin{frame}[t]{Comparaison visuelle : Microsoft Word / \LaTeX}
 
-\begin{figure}
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+
+\vspace*{-.25cm}
+\fbox{\includegraphics[width=.95\textwidth, trim = 1.2cm 22cm 1.2cm 2.2cm, clip]{img/cifa_word}}
+
+\vspace*{-.25cm}
+\flushright
+\fbox{\includegraphics[width=.95\textwidth, trim = 1cm 21cm 1cm 2cm, clip]{img/cifa_latex}}
+
+\end{frame}
+
+
+
+\begin{frame}[t]{Comparaison visuelle : OpenOffice Présentation / Beamer}
+
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+
 \centering
-  \includegraphics[width= 10cm, trim = 0cm 22cm 0cm 0cm, clip]{img/cifa_word} 
-%\end{figure}
-
-%\begin{figure}
-%\centering
-\includegraphics[width=10 cm, trim = 0cm 21cm 0cm 0cm, clip]{img/cifa_latex}
-\end{figure}
+\begin{tikzpicture}
+  \node (ooo) at (0,0) {\fbox{\includegraphics[width=.55\textwidth]{img/diapo_ooo}}};
+  \node (beamer) at (5.5,2) {\fbox{\includegraphics[width=.55\textwidth, trim = 0cm 0cm 0cm 0cm, clip]{img/diapo_beamer}}};
+\end{tikzpicture}
 
 \end{frame}
 
@@ -108,8 +123,8 @@
     \begin{itemize}
         \item un peu le même principe que le langage HTML
         \item cycle de type édition-compilation
-        \item au départ: document source (.tex)
-        \item à l'arrivée: document de type pdf (.pdf)
+        \item au départ: document source en texte brut (.tex)
+        \item à l'arrivée: document binaire de type PDF (.pdf)
     \end{itemize}
 \end{frame}
 
