@@ -628,7 +628,17 @@ Utilisation la plus courante:
 \item  \lstinline?\label{etiquette}?    ajoute une étiquette à l'objet. On pourra la référencer avec les commandes \lstinline?\ref{etiquette}? (numéro de figure) et \lstinline?\pageref{etiquette}? (numéro de page).
 \end{itemize}
 
-Exemple : \myex{Voir diapositive \pageref{etiquette11}.}
+Exemple :
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+\begin{lstlisting}
+Voir diapositive \pageref{monlogo}.
+\end{lstlisting}
+  \end{column}
+  \begin{column}{0.45\textwidth}
+\myex{Voir diapositive \pageref{monlogo}.}
+  \end{column}
+\end{columns}
 
 \end{frame}
 
@@ -643,8 +653,8 @@ Exemple : \myex{Voir diapositive \pageref{etiquette11}.}
 \begin{figure}[h]
   \centering
   \includegraphics[width=5cm]{img/latex}
-  \caption{Logo \LaTeX}
-  \label{etiquette11}
+  \caption{Le logo du langage \LaTeX}
+  \label{monlogo}
 \end{figure}
 \end{lstlisting}
 
@@ -653,8 +663,8 @@ Exemple : \myex{Voir diapositive \pageref{etiquette11}.}
 \begin{figure}[h]
   \centering
   \includegraphics[width=5cm]{img/latex}
-  \caption{Logo \LaTeX}
-  \label{etiquette11}
+  \caption{Le logo du langage \LaTeX}
+  \label{monlogo}
 \end{figure}
 }
 
@@ -742,8 +752,10 @@ Si $x < 0$, alors $\sqrt{x}$ n'existe pas.
 Ou, selon la police du document :
 
 \medskip
+% Note : \rmfamily, \mathnormal et \marthrm ne servent qu'à modifier la police
+% pour obtenir celle d'un document Latex autre que Beamer (article, report…)
 {\myex{\rmfamily
-Si $x < 0$, alors $\sqrt{x}$ n'existe pas.
+Si $\mathnormal{x} < \mathrm{0}$, alors $\sqrt{\mathnormal{x}}$ n'existe pas.
 }}
 \end{frame}
 
@@ -771,7 +783,7 @@ Texte texte  $1+1=3$...
 \begin{lstlisting}
 \begin{equation}       % debut de l'environnement equation
   1+1=0                % equation
-  \label{titre_eq}     % etiquette de l'equation
+  \label{eq_zero}      % etiquette de l'equation
 \end{equation}         % fin de l'environnement equation
 \end{lstlisting}
 
@@ -781,23 +793,25 @@ donne:
 \myex{
 \begin{equation}
   1+1=0
-  \label{titre_eq}
+  \label{eq_zero}
 \end{equation}
 }
 
 \medskip
-On peut utiliser l'étiquette de l'équation (\lstinline?titre_eq?) pour y faire référence :
+On peut utiliser l'étiquette de l'équation (\lstinline?eq_zero?) pour y faire référence :
 
 \medskip
 \begin{columns}
   \begin{column}{0.45\textwidth}
 \begin{lstlisting}
-Voir £\'e£quation (\ref{titre_eq}).
+Voir £\'e£quation (\ref{eq_zero}).
+Voir £\'e£quation \eqref{eq_zero}.
 \end{lstlisting}
   \end{column}
   \begin{column}{0.45\textwidth}
-\rmfamily
-\myex{Voir équation (\ref{titre_eq}).}
+\myex{Voir équation (\ref{eq_zero}).
+
+Voir \'equation \eqref{eq_zero}.}
   \end{column}
 \end{columns}
 
@@ -812,11 +826,11 @@ Voir £\'e£quation (\ref{titre_eq}).
 \item\lstinline?\sqrt{1+2}?: racine carrée \myexinline{$\sqrt{1+2}$}
 \item\lstinline?\sqrt[3]{1+2}?: racine carrée n-ième \myexinline{$\sqrt[3]{1+2}$}
 \item\lstinline?\frac{1}{2}?: fraction \myexinline{$\frac{1}{2}$}
-\item\lstinline?\sin(1+2)?: cosinus \myexinline{$\sin(1+2)$}
-\item\lstinline?\cos(1+2)?: sinus \myexinline{$\cos(1+2)$}
-\item\lstinline?1^{1+2} ou 1^2?: puissance \myexinline{$1^{1+2}$ ou $1^2$}
-\item\lstinline?1_{1+2} ou 1_2?: indice \myexinline{$1_{1+2}$ ou $1_2$}
-\item\lstinline?1_{1+2}^{1+3} ou 1_2^3?: puissance ET indice \myexinline{$1_{1+2}^{1+3}$ ou $1_2^3$}
+\item\lstinline?\sin(1+2)?: sinus \myexinline{$\sin(1+2)$}
+\item\lstinline?\cos(1+2)?: cosinus \myexinline{$\cos(1+2)$}
+\item\lstinline?1^{1+2}? ou \lstinline?1^2?: puissance \myexinline{$1^{1+2}$ ou $1^2$}
+\item\lstinline?1_{1+2}? ou \lstinline?1_2?: indice \myexinline{$1_{1+2}$ ou $1_2$}
+\item\lstinline?1_{1+2}^{1+3}? ou \lstinline?1_2^3?: puissance ET indice \myexinline{$1_{1+2}^{1+3}$ ou $1_2^3$}
 \end{itemize}
 \end{frame}
 
@@ -830,19 +844,37 @@ Voir £\'e£quation (\ref{titre_eq}).
 \item \lstinline? \dot{v} \ddot{v} \dddot{v} \ddddot{v}?: dérivée \myexinline{$\dot{v}$ $\ddot{v}$ $\dddot{v}$ $\ddddot{v}$}
 \item \lstinline? \vec{AB}? ou \lstinline?\overrightarrow{AB}?: vecteur \myexinline{$\vec{AB}$} \myexinline{$\overrightarrow{AB}$}
 \item \lstinline? \overline{1+i}?: conjugué \myexinline{$\overline{1+i} $}
-\item \lstinline? \sum_a^b ?: somme \myexinline{$\sum_a^b x$}
-\item \lstinline? \int_a^b ?: intégrale \myexinline{$\int_a^b y$}
+\item \lstinline? \sum_a^b?: somme \myexinline{$\sum_a^b x$}
+\item \lstinline? \int_a^b?: intégrale \myexinline{$\int_a^b y$}
 \item \lstinline? \widehat {ABC}?: angle \myexinline{$\widehat {ABC}$}
 \item \lstinline? 2x > 0 \mbox{ si } x > 0?: texte \myexinline{$2x > 0 \mbox{ si } x > 0$}
-\item \lstinline? \left( \frac{1}{2} \right) ?: grande parenthèse \myexinline{$\left( \frac{1}{2} \right)$}
+\item \lstinline? \left( \frac{1}{2} \right)?: grandes parenthèses \myexinline{$\left( \frac{1}{2} \right)$}
 \end{itemize}
 
-Note : différents rendus selon la position.
-\myex{
+Note : le rendu est différent dans un environnement \texttt{equation} :
+\begin{columns}
+  \begin{column}{0.35\textwidth}
+\begin{lstlisting}
 \begin{equation}
-\sum_a^b x \quad ; \quad \int_a^b y
+  \sum_a^b x =
+  \int_a^b y
 \end{equation}
-}
+\end{lstlisting}
+  \end{column}
+  \begin{column}{0.50\textwidth}
+\myex{\begin{equation}
+  \sum_a^b x =
+  \int_a^b y
+\end{equation}}
+  \end{column}
+\end{columns}
+
+
+%\myex{
+%\begin{equation}
+%\sum_a^b x \quad ; \quad \int_a^b y
+%\end{equation}
+%}
 
 \end{frame}
 
@@ -923,9 +955,7 @@ A= \left(
 \right)
 \end{lstlisting}
 
-donne:
-
-\smallskip
+\bigskip
 \myex{
 \begin{equation} %début de l'environnement équation
 A= \left(
@@ -933,7 +963,7 @@ A= \left(
 \begin{bmatrix} 1 & 2 & a \\ 3 & 4 & b \\ 5 & 6 & c \\ 7 & 8 & d\end{bmatrix}
 \frac{1+3+9+o+\frac{1}{2}} {n-m-\lambda}
 \right)
-\label{titre_éq} %label de l'équation (ex voir équation W)
+\label{titre_eq} %label de l'équation (ex voir équation W)
 \end{equation} %fin de l'environnement équation
 }
 
@@ -1275,12 +1305,30 @@ Exemple (fichier \texttt{.bib}):
     \frametitle{Types d'entrée}
    
         \begin{itemize}
-            \item \texttt{phdthesis} et \texttt{mastersthesis} : thèse de doctorat ou de master, champs-requis: \texttt{author, title, school, year } 
-            \item \texttt{inproceedings} : article de conférence, champs-requis: \texttt{author, title, booktitle, year} 
-            \item \texttt{article} : article de journal, champs-requis: \texttt{author, title, journal, yearr} 
-            \item \texttt{book} : livre, champs-requis: \texttt{author/editor, title, publisher, year} 
-            \item \texttt{techreport} : rapport technique, champs-requis: \texttt{author, title, institution, year} 
+            \item \texttt{phdthesis} et \texttt{mastersthesis} : thèse de doctorat ou de master
+              \begin{itemize}
+                \item champs requis: \texttt{author, title, school, year}
+              \end{itemize}
+            \item \texttt{inproceedings} : article de conférence
+              \begin{itemize}
+                \item champs requis: \texttt{author, title, booktitle, year} 
+              \end{itemize}
+            \item \texttt{article} : article de journal
+              \begin{itemize}
+                \item champs requis: \texttt{author, title, journal, yearr} 
+              \end{itemize}
+            \item \texttt{book} : livre
+              \begin{itemize}
+                \item champs requis: \texttt{author/editor, title, publisher, year} 
+              \end{itemize}
+            \item \texttt{techreport} : rapport technique
+              \begin{itemize}
+                \item champs requis: \texttt{author, title, institution, year}
+              \end{itemize}
             \item \texttt{misc} : document qui ne rentre dans aucune catégorie: \texttt{aucun} 
+              \begin{itemize}
+                \item aucun champ requis
+              \end{itemize}
         \end{itemize}
 
 \end{frame}

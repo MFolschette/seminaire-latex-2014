@@ -401,20 +401,22 @@ Intérêt ?
     \end{lstlisting}
     \begin{block}{Paquets usuels}
         \begin{lstlisting}[multicols=2]
-% accents
+%%% Paquets fondamentaux :
+% Accents
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
-%formules mathematiques
+% Document en francais
+\usepackage[francais]{babel}
+% Formules mathematiques
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-%inclusion de fichier pdf
+%%% Autres paquets utiles :
+% Inclusion de fichiers PDF
 \usepackage{pdfpages}
-%positionnement des figures
+% Positionnement des figures
 \usepackage{float}
-%document en francais
-\usepackage[francais]{babel}
-%divers
+% Divers
 \usepackage[left,pagewise]{lineno}
 \usepackage{graphicx}
 \usepackage{array}
@@ -687,6 +689,7 @@ Styles de caractères possibles :
 \textbf{Gras}
 \textit{Italique}
 \textsc{Majuscules}
+XXX\textsuperscript{Exposant}
 \underline{Soulign£\'e£}
 \end{lstlisting}
 
@@ -699,6 +702,8 @@ Styles de caractères possibles :
 \textit{Italique}
 
 \textsc{Majuscules}
+
+XXX\textsuperscript{Exposant}
 
 \underline{Soulign\'e}
 }
