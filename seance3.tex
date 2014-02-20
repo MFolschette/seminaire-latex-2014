@@ -8,10 +8,9 @@
 
 
 % Exemples de macros
-\newcommand{\ltsname}{Labeled Transition System}
+\newcommand{\ltsname}{Diagramme de Transisions \'Etiquet\'e}
 \newcommand{\abs}[1]{\ensuremath\left|#1\right|}
 \newcommand{\lts}[1][]{\ensuremath\left(Q^{#1}, q_0^{#1}, A_{#1}, \rightarrow_{#1}\right)}
-\renewcommand{\vec}[1]{\overrightarrow{#1}}
 
 
 
@@ -25,9 +24,9 @@
 
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Points abordés durant la séance 3:}
+\begin{frame}{Points abordés durant cette troisième séance}
     \begin{itemize}
-            \item bibliographie, 
+            \item Bibliographie, 
             \item commandes avancées, 
             \item inclusion de figures à l'aide de différents outils, 
             \item création d'un diaporama à l'aide de la classe Beamer, 
@@ -149,58 +148,235 @@ Utiliser un outil de gestion de bibliographie est nécessaire:
 \section{Commandes personnalisées}
 
 \begin{frame}[fragile]
-	\frametitle{Créer ses propres commandes}
-	Pourquoi?
-	\begin{itemize}
-		\item Réutilisation
-		\item Simplification
-	\end{itemize}
-	
-	Définition
+\frametitle{Créer ses propres commandes}
+Pourquoi?
+\begin{itemize}
+  \item Réutilisation
+  \item Simplification
+\end{itemize}
 
-	\begin{lstlisting}
-\newcommand{\ltsname}{Labeled Transition System}
+Définition
+
+\begin{lstlisting}
+\newcommand{\ltsname}{Diagramme de Transisions £\'E£tiquet£\'e£}
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\lts}[1][]{\left(Q^{#1},q_0^{#1},A_{#1},\rightarrow_{#1}\right)}
-	\end{lstlisting}
-	Utilisation
-		\begin{itemize}
-	\item \lstinline?\ltsname? $\Rightarrow$ \ltsname
-	\item \lstinline?\abs{\pi}? $\Rightarrow$ $\abs{\pi}$
-	\item \lstinline?\lts? $\Rightarrow$ $\lts$\\
-		\lstinline?\lts[n]? $\Rightarrow$ $\lts[n]$
-	\end{itemize}
-	Restrictions
-	\begin{itemize}
-		\item Pas de chiffres
-		\item Pas de @
-	\end{itemize}
+\end{lstlisting}
+Utilisation
+  \begin{itemize}
+\item \lstinline?\ltsname? \myexinline{\ltsname}
+\item \lstinline?\abs{\pi}? \myexinline{$\abs{\pi}$}
+\item \lstinline?\lts? \myexinline{$\lts$}\\
+  \lstinline?\lts[n]? \myexinline{$\lts[n]$}
+\end{itemize}
+Restrictions
+\begin{itemize}
+  \item Pas de chiffres
+  \item Pas de @
+\end{itemize}
 \end{frame}
+
+
 
 \begin{frame}[fragile]
-	\frametitle{Redéfinir des commandes}
+  \frametitle{Définir des commandes simples}
 
-	\begin{lstlisting}
-\renewcommand{\vec}[1]{\overrightarrow{#1}}
-	\end{lstlisting}
-	Utilisation
-		\begin{itemize}
-	\item \lstinline?\vec{AB}? $\Rightarrow$ $\vec{AB}$
-	\end{itemize}
+\begin{lstlisting}
+\newcommand{\£\meta{nomcommande}£}[£\meta{n}£]{£\meta{Corps de la commande}£}
+\end{lstlisting}
+À chaque fois que la commande créée est utilisée, elle est remplacée par son contenu.
+
+\bigskip
+Exemple :
+\begin{lstlisting}
+\newcommand{\ltsname}{Diagramme de Transisions £\'E£tiquet£\'e£}
+\end{lstlisting}
+Crée une commande \lstinline?\ltsname?
+
+qui écrit “\ltsname”.
+
+\bigskip
+Résultat :
+\begin{columns}
+\begin{column}{.45\textwidth}
+\begin{lstlisting}
+Soit $D$ un \ltsname.
+\end{lstlisting}
+\end{column}
+
+\begin{column}{.45\textwidth}
+\myex{%
+Soit $D$ un \ltsname.
+}
+\end{column}
+\end{columns}
 
 \end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Définir des commandes avec arguments}
+
+\begin{lstlisting}
+\newcommand{\£\meta{nomcommande}£}[£\meta{n}£]{£\meta{Corps avec \#1, ..., \#n}£}
+\end{lstlisting}
+On peut définir un certain nombre d'arguments obligatoires pour une commande, et y faire référence avec \lstinline?#1?, \lstinline?#2?, ... jusqu'à \lstinline?#n?.
+
+\bigskip
+Exemple :
+\begin{lstlisting}
+\newcommand{\abs}[1]{\left|#1\right|}
+\end{lstlisting}
+Crée une commande \lstinline?\abs{xxx}?
+
+qui permet de représenter la valeur absolue de son argument : “$\abs{xxx}$”.
+
+\bigskip
+Résultat :
+\begin{columns}
+\begin{column}{.45\textwidth}
+\begin{lstlisting}
+\begin{equation}
+  \abs{\sum_{n=i}^j n} \leq
+  \sum_{n=i}^j \abs{n}
+\end{equation}
+\end{lstlisting}
+\end{column}
+
+\begin{column}{.45\textwidth}
+\myex{%
+\begin{equation}
+  \abs{\sum_{n=i}^j n} \leq
+  \sum_{n=i}^j \abs{n}
+\end{equation}
+}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Définir des commandes avec un argument optionnel}
+
+\begin{lstlisting}
+\newcommand{\£\meta{nomcommande}£}[£\meta{n}£][£\meta{Valeur par d£\'e£faut}£]{£\meta{Corps avec \#1, ..., \#n}£}
+\end{lstlisting}
+On peut aussi définir une valeur par défaut pour le premier argument, qui sera utilisée quand cet argument n'est pas précisé.
+Il faut alors écrire le premier argument entre crochets.
+
+\bigskip
+Exemple :
+\begin{lstlisting}
+\newcommand{\lts}[1][]{\left(Q^{#1},q_0^{#1},A_{#1},\rightarrow_{#1}\right)}
+\end{lstlisting}
+Crée une commande qui peut être utilisée avec un argument : \lstinline?\lts[xxx]?
+ou sans argument : \lstinline?\lts?.
+
+\bigskip
+Résultat :
+\begin{columns}
+\begin{column}{.45\textwidth}
+\begin{lstlisting}
+\begin{equation}
+  \lts[n]
+\end{equation}
+\begin{equation}
+  \lts
+\end{equation}
+\end{lstlisting}
+\end{column}
+
+\begin{column}{.45\textwidth}
+\myex{%
+\begin{equation}
+  \lts[n]
+\end{equation}
+\begin{equation}
+  \lts
+\end{equation}
+}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Redéfinir des commandes}
+
+\begin{lstlisting}
+\renewcommand{\£\meta{nomcommande}£}[£\meta{n}£][£\meta{Valeur par d£\'e£faut}£]{£\meta{Corps avec \#1, ..., \#n}£}
+\end{lstlisting}
+On peut redéfinir une commande existante.
+
+\bigskip
+Exemple :
+\begin{lstlisting}
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+\end{lstlisting}
+
+\bigskip
+Avant :
+\begin{columns}
+\begin{column}{.45\textwidth}
+\begin{lstlisting}
+\begin{equation}
+  \vec{AB}
+\end{equation}
+\end{lstlisting}
+\end{column}
+\begin{column}{.45\textwidth}
+\myex{%
+\begin{equation}
+  \vec{AB}
+\end{equation}
+}
+\end{column}
+\end{columns}
+
+% À éviter ! Il vaut mieux (re)définir les commandes dans le préambule.
+% Cette redéfinition ici est pour l'exemple.
+\renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\bigskip
+Après :
+\begin{columns}
+\begin{column}{.45\textwidth}
+\begin{lstlisting}
+\begin{equation}
+  \vec{AB}
+\end{equation}
+\end{lstlisting}
+\end{column}
+\begin{column}{.45\textwidth}
+\myex{%
+\begin{equation}
+  \vec{AB}
+\end{equation}
+}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
 
 \section{Comprendre la compilation}
 
 \begin{frame}
 	\frametitle{Fichiers auxiliaires}
 	\begin{description}
-	\item[log] fichier où \LaTeX{} écrit tout un tas d'informations sur la dernière compilation
-	\item[aux] fichier auxiliaire: stocke les références, citations, numéros de page, etc.
-	\item[toc] fichier contenant la table des matières
-	\item[lof] fichier contenant la liste des figures
-	\item[lot] fichier contenant la liste des tables
-	\item[bbl] fichier contenant la bibliographie
+	\item[log] Fichier où \LaTeX{} écrit tout un tas d'informations sur la dernière compilation.
+	\item[aux] Fichier auxiliaire: stocke les références, citations, numéros de page, etc.
+	\item[toc] Fichier contenant la table des matières.
+	\item[lof] Fichier contenant la liste des figures.
+	\item[lot] Fichier contenant la liste des tables.
+	\item[bbl] Fichier contenant la bibliographie.
 	\end{description}
 \end{frame}
 
