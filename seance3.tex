@@ -444,25 +444,49 @@ Après :
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Erreurs de compilation courantes}
+  \frametitle{Erreurs de compilation courantes}
 
-    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+\begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
 | ! Too many }'s.
-| l.6 \date December 2004} \end{lstlisting}
-    Accolades non balancées
+| l.6 \date December 2004}
+\end{lstlisting}
+Accolades non balancées :
+\begin{lstlisting}[backgroundcolor=\color{red!20}]
+\date December 2004}
+\end{lstlisting}\vspace*{-.85em}
+\begin{lstlisting}[backgroundcolor=\color{green!20}]
+\date{December 2004}
+\end{lstlisting}
 
-    \medskip
-    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+\pause
+\hrule
+\medskip
+\begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
 | ! Undefined control sequence.
 | l.6 \dtae
-| {December 2004} \end{lstlisting}
-    Faute de frappe dans une commande, ou package manquant
+| {December 2004}
+\end{lstlisting}
+Faute de frappe dans une commande, ou package manquant :
+\begin{lstlisting}[backgroundcolor=\color{red!20}]
+\dtae{December 2004}
+\end{lstlisting}\vspace*{-.85em}
+\begin{lstlisting}[backgroundcolor=\color{green!20}]
+\date{December 2004}
+\end{lstlisting}
 
-
-    \medskip
-    \begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
-| ! Missing $ inserted \end{lstlisting}
-Caractère math utilisé hors du mode math (ex: \_)
+\pause
+\hrule
+\medskip
+\begin{lstlisting}[language={},backgroundcolor=\color{gray!30}]
+| ! Missing $ inserted
+\end{lstlisting}
+Caractère math utilisé hors du mode math (ex: \_) :
+\begin{lstlisting}[backgroundcolor=\color{red!20}]
+Ouvrir le fichier ex_1.txt
+\end{lstlisting}\vspace*{-.85em}
+\begin{lstlisting}[backgroundcolor=\color{green!20}]
+Ouvrir le fichier ex\_1.txt
+\end{lstlisting}
 
 \end{frame}
 

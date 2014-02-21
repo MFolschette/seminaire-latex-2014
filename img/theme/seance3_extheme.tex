@@ -1,0 +1,83 @@
+\documentclass{beamer}
+
+% Suppression des icônes de navigation
+%\setbeamertemplate{navigation symbols}{}
+
+% Sélection du thème
+%\newcommand{\mytheme}{CambridgeUS}
+\newcommand{\mytheme}{Madrid}
+%\newcommand{\mytheme}{ECN}
+
+
+
+
+%%%\input{../preambule}
+
+\usepackage[utf8]{inputenc}  % Encodage : UTF-8
+\usepackage[T1]{fontenc}     % Caractères français
+
+\usepackage[french]{babel}   % Langue française
+\frenchbsetup{PartNameFull=false}  % Nécessaire pour des parties correctement nommées dans un Beamer en français
+
+\usepackage{amsmath}         % Maths améliorées
+\usepackage{amssymb}         % Symboles mathématiques
+\usepackage{amsfonts}        % Polices mathématiques
+\usepackage{graphicx}        % Inclusion d'images (PNG, GIF, PDF)
+\usepackage{array}           % Tableaux améliorés
+\usepackage[normalem]{ulem}  % Styles barré et souligné
+\usepackage{listings, multicol, xcolor} % Listings (code source)
+\usepackage{lmodern}         % Police d'écriture
+\usepackage{url, hyperref}   % Liens hypertexte
+\usepackage{calc}            % Pour la commance \widthof
+
+% Auteurs et licence
+\author[Folschette, Jubien, Tanguy]{Maxime \textsc{Folschette\up{1} } \and Anthony \textsc{Jubien\up{2}} \and Julien \textsc{Tanguy\up{3}} \\ 
+{\scriptsize  \up{1} IRCCyN équipe MeForBio \\
+\up{2} IRCCyN équipe Robotique et ONERA Toulouse \\
+\up{3} IRCCyN équipe Systèmes Temps Réel \\
+maxime.folschette, anthony.jubien, julien.tanguy @irccyn.ec-nantes.fr} }
+\institute[AED]{Association des Étudiants en Doctorat de l'ECN (AED)  \\~\\
+Document sous licence Creative Commons BY 3.0 FR \\
+\url{http://creativecommons.org/licenses/by/3.0/fr/}}
+
+\usetheme{\mytheme}
+
+\title[Séminaire \LaTeX, séance 3]{Séminaire \LaTeX, séance 3: Utilisation avancée}
+\date{mardi 25 février 2014}
+
+\begin{document}
+
+\section{Utilisation de Beamer}
+\section{Les animations en Beamer}
+\section{Personnalisation de Beamer}
+
+\subsection{Exemples}
+
+\begin{frame}
+  \frametitle{Exemple de thème : \mytheme}
+
+\begin{block}{Bloc normal (neutre)}
+  Contenu du bloc (listes, équations, maths, ...)
+\end{block}
+
+\begin{alertblock}{Bloc d'alerte}
+  Si on suppose :
+  \begin{equation}
+    1+1=0
+  \end{equation}
+  alors on peut prouver n'importe quoi.
+\end{alertblock}
+
+\begin{exampleblock}{Bloc d'exemple}
+  Par exemple :
+  \begin{itemize}
+    \item Tout ce qui est vrai est aussi faux, et inversement,
+    \item $x = y$ pour tout $x$ et tout $y$,
+    \item mon chat et moi ne formons qu'une seule personne.
+  \end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\subsection{Exercices}
+
+\end{document}

@@ -9,23 +9,23 @@
 
 Qu'est-ce que PGF/TikZ ?
 \begin{itemize}
-  \item PGF est un langage complet et compliqué de dessin vectoriel,
-  \item TikZ est une surcouche plus simple pour utiliser PGF.
+  \item PGF est un langage \bemph{complet} et \bemph{compliqué} de dessin vectoriel,
+  \item TikZ est une surcouche \bemph{plus simple} pour utiliser PGF.
 \end{itemize}
 
 \bigskip
 Ils permettent de dessiner des figures facilement. Beaucoup d'avantages :
 \begin{itemize}
-  \item les figures sont intégrés au document \LaTeX{} (pas de fichier externe),
-  \item dessin vectoriel : toujours lisse, quel que soit le niveau de zoom,
-  \item très riche, beaucoup d'exemples disponibles faciles à reprendre.
+  \item les figures sont \bemph{intégrés} au document \LaTeX{} (pas de fichier externe),
+  \item dessin \bemph{vectoriel} : toujours lisse, quel que soit le niveau de zoom,
+  \item très \bemph{riche}, beaucoup d'\bemph{exemples} disponibles faciles à reprendre.
 \end{itemize}
 
 \bigskip
 Inconvénients :
 \begin{itemize}
-  \item parfois difficile à prendre en main,
-  \item peut alourdir la compilation et le fichier final,
+  \item parfois \bemph{difficile} à prendre en main,
+  \item peut \bemph{alourdir} la compilation et le fichier final,
   \item ne permet pas de tout faire (mais presque).
 \end{itemize}
 \end{frame}
@@ -78,6 +78,8 @@ Inconvénients :
 
 
 
+
+
 \section{Utilisation de TikZ}
 
 \begin{frame}[fragile]
@@ -93,7 +95,8 @@ ce qui permet d'utiliser :
 \begin{itemize}
   \item de nouvelles formes de pointes de flèches (\lstinline?arrows?),
   \item des dégradés (\lstinline?shadings?),
-  \item des styles de lignes (\lstinline?decorations.pathmorphing?), ...
+  \item des styles de lignes (\lstinline?decorations.pathmorphing?),
+  \item etc.
 \end{itemize}
 \end{frame}
 
@@ -114,6 +117,7 @@ souvent inclus dans une \lstinline?figure? :
     ...
   \end{tikzpicture}
   \caption{...}
+  \label{...}
 \end{figure}
 \end{lstlisting}
 \end{frame}
@@ -123,22 +127,31 @@ souvent inclus dans une \lstinline?figure? :
 % Morceaux de la figure d'exemple (pour éviter les copier-coller)
 \def \tikzexnodes
 {
-\node[circle, fill=yellow, draw]
-  (rond) {1};
-\node[ellipse, fill=red!50, right of=1, node distance=3cm]
+\node[circle, fill=yellow, draw] (rond) {1};
+\node[ellipse, fill=red!50, right of=rond, node distance=3cm]
   (ellipse) {Une ellipse};
-\node[diamond, fill=blue!50, draw=blue, thick, left of=1, node distance=2cm]
+\node[diamond, fill=blue!50, draw=blue, thick] at (-2, 0)
   (diamantvide) {};
+}
+
+\def \tikzexedgesa
+{
+\path[->] (rond) edge (ellipse);
+\path[o->>, bend right, dashed] (rond) edge (diamantvide);
+}
+
+\def \tikzexedgesb
+{
+\path[o->>, bend right] (diamantvide) edge
+  node[below, fill=green!30] (retour) {retour}
+  (rond);
+\path[<->, bend right] (retour.east) edge (rond.south);
 }
 
 \def \tikzexedges
 {
-\path[->] (rond) edge (ellipse);
-\path[o->, bend right] (rond) edge (diamantvide);
-\path[o->>, bend right] (diamantvide) edge
-  node[below, fill=green!30] (retour) {retour}
-  (rond);
-\path[-, bend right] (retour.east) edge (rond.south);
+\tikzexedgesa
+\tikzexedgesb
 }
 
 \begin{frame}[fragile,t]
@@ -151,12 +164,14 @@ souvent inclus dans une \lstinline?figure? :
 Une figure TikZ est constituée d'éléments définis à l'aide de commandes :
 
 \begin{lstlisting}
-  \commande[param£\`e£tres] ... suite de la commande ... ;
+  \commande[param£\`e£tres] ... suite de la c££ommande ... ;
 \end{lstlisting}
 
 Par exemple, un graphe est composé de nœuds et d'arcs entre ces nœuds.
-Tous sont définis à l'aide de commandes TikZ.
+Tous sont définis à l'aide de commandes TikZ \lstinline?\node? et \lstinline?\path?.
 \end{frame}
+
+
 
 \begin{frame}[fragile, t]
   \frametitle{Exemple : un graphe simple}
@@ -167,25 +182,64 @@ Tous sont définis à l'aide de commandes TikZ.
   \end{tikzpicture}
 \end{figure}
 
-On définit un nœud avec la commande \lstinline?\node? et on peut spécifier :
+On définit un nœud avec la commande \lstinline?\node? :
+\begin{lstlisting}
+\node[£\meta{options}£] (£\meta{nom}£) {£\meta{\'etiquette}£};
+\end{lstlisting}
+
+On peut spécifier :
 \medskip
 \begin{itemize}
-  \item le nom interne \lstinline?(nom)? et l'étiquette visible \lstinline?{etiquette}?
-  \item la forme \quad \lstinline?circle?, \lstinline?ellipse?, \lstinline?square?, \lstinline?diamond?
-  \item le type de ligne et la couleur de fond
-  \item la position (absolue ou par rapport aux autres nœuds)
+  \item le nom interne \lstinline?(nom)?,
+  \item l'étiquette visible \lstinline?{etiquette}?,
+  \item la forme (\lstinline?circle?, \lstinline?ellipse?, \lstinline?square?, \lstinline?diamond?),
+  le type de ligne et la couleur de fond,
+  la position (absolue ou par rapport aux autres nœuds), ...
 \end{itemize}
 
 % Note : « n££ode » permet uniquement d'écrire « node » sans le colorer das le listing
 \begin{lstlisting}
-\node[circle, fill=yellow, draw]
-  (rond) {1};
-\node[ellipse, fill=red!50, right of=1, n££ode distance=3cm]
+\node[circle, fill=yellow, draw] (rond) {1};
+\node[ellipse, fill=red!50, right of=rond, node distance=3cm]
   (ellipse) {Une ellipse};
-\node[diamond, fill=blue!50, draw=blue, thick, left of=1, n££ode distance=2cm]
-  (diamantvide) {};
+\node[diamond, fill=blue!50, draw=blue, thick] at (-2, 0) (diamantvide) {};
 \end{lstlisting}
 \end{frame}
+
+
+
+\begin{frame}[fragile, t]
+  \frametitle{Exemple : un graphe simple}
+
+\begin{figure}
+  \begin{tikzpicture}
+    \tikzexnodes
+    \tikzexedgesa
+  \end{tikzpicture}
+\end{figure}
+
+On définit ensuite un arc entre deux nœuds avec la commande
+
+\begin{lstlisting}
+    \path[£\meta{options}£] (£\meta{origine}£) edge (£\meta{cible}£);
+\end{lstlisting}
+
+On peut définir :
+\begin{itemize}
+  \item l'\lstinline?(origine)? et la \lstinline?(cible)? grâce à leurs noms internes,
+  \item le type de flèche (\lstinline?->?, \lstinline?o->?, \lstinline?-?),
+    la courbure (\lstinline?bend right?),
+    le type de trait (\lstinline?thick?, \lstinline?dashed?), ...
+\end{itemize}
+
+\begin{lstlisting}
+\path[->] (rond) edge (ellipse);
+\path[o->>, bend right, dashed] (rond) edge (diamantvide);
+\end{lstlisting}
+
+\end{frame}
+
+
 
 \begin{frame}[fragile, t]
   \frametitle{Exemple : un graphe simple}
@@ -197,29 +251,23 @@ On définit un nœud avec la commande \lstinline?\node? et on peut spécifier :
   \end{tikzpicture}
 \end{figure}
 
-On définit ensuite un arc entre deux nœuds avec la commande
-
-\begin{lstlisting}
-    \path[£\meta{options}£] (£\meta{origine}£) edge (£\meta{cible}£);
-\end{lstlisting}
-
-On peut définir le type de flèche (\lstinline?->?, \lstinline?o->?, \lstinline?-?),
-la courbure (\lstinline?bend right?),
-etc.
-
-\begin{lstlisting}
-\path[->] (rond) edge (ellipse);
-\path[o->, bend right] (rond) edge (diamantvide);
-\end{lstlisting}
-
-On peut placer un nouveau nœud sur un arc avec le mot-clef \lstinline?node?.
+On peut placer un nouveau nœud sur un arc avec le mot-clef \lstinline?node? :
 
 \begin{lstlisting}
 \path[o->>, bend right] (diamantvide) edge
   node[below, fill=green!30] (retour) {retour}
   (rond);
-\path[-, bend right] (retour.east) edge (rond.south);
 \end{lstlisting}
+
+Il se comporte comme un nœud normal (on peut y faire référence normalement).
+
+\medskip
+On peut aussi définir d'où partent les arcs :
+
+\begin{lstlisting}
+\path[<->, bend right] (retour.east) edge (rond.south);
+\end{lstlisting}
+
 \end{frame}
 
 
@@ -232,15 +280,15 @@ On peut placer un nouveau nœud sur un arc avec le mot-clef \lstinline?node?.
 Pour produire de belles figures TikZ, le mieux est de chercher des exemples et de les modifier.
 
 \begin{center}
-Pour cela : \Huge Internet !
+Pour cela : \Huge \rotatebox[origin=c]{15}{\myheart}\bemph{Internet !}\rotatebox[origin=c]{-15}{\myheart}
 \end{center}
 
-On pourra notamment se servir des exemples de TEXample.net \cite{tikzandpgfexamples}.
+On pourra notamment se servir des exemples disponibles sur TEXample \cite{tikzandpgfexamples} à : \url{http://texample.net/tikz/examples/}.
 
 \bigskip
-De plus, il est possible de :
+De plus, il est possible :
 \begin{itemize}
-  \item définir des thèmes pour des figures semblables,
+  \item de définir des thèmes pour des figures semblables,
   \item d'utiliser des bibliothèques pour des diagrammes répandus (UML, schémas électriques...).
 \end{itemize}
 \end{frame}

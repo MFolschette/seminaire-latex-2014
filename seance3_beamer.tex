@@ -14,17 +14,17 @@ Beamer est une classe \LaTeX{} :
 \medskip
 Points communs :
 \begin{itemize}
-  \item structuration (parties, sections, sous-sections ; pas de chapitres),
+  \item \bemph{structuration} (parties, sections, sous-sections ; pas de chapitres),
   \item mise en forme du texte,
-  \item inclusion de figures et de formules mathématiques,
+  \item inclusion de \bemph{figures} et de \bemph{formules mathématiques},
   \item etc.
 \end{itemize}
 
 \medskip
 Différences :
 \begin{itemize}
-  \item structuration en diapositives,
-  \item nouvelles commandes (transitions),
+  \item structuration en \bemph{diapositives},
+  \item nouvelles commandes (\bemph{transitions}/animations),
   \item mise en page différente (police, agencement).
 \end{itemize}
 \end{frame}
@@ -96,7 +96,7 @@ On peut définir un titre et un sous-titre pour une diapositive :
 \end{lstlisting}
 
 \bigskip
-De plus, des informations relatives au thème s'affichent dans les bandeaux d'en-tête et de pied :
+De plus, selon le thème, des informations s'affichent dans les bandeaux d'en-tête et de pied :
 \begin{itemize}
   \item section en cours,
   \item titre de la présentation, date, nom des auteurs et institut,
@@ -171,35 +171,30 @@ L'option \lstinline?handout? du \lstinline?\documentclass? permet de supprimer o
 Avec la commande \lstinline?\pause? ou \lstinline?\pause[x]?
 
 \medskip
-Exemple :
+Exemple avec \lstinline?\pause? :
 
 \begin{columns}
   \begin{column}{0.20\textwidth}
 \begin{lstlisting}
-| Texte 1
+| Texte 1,
 | \pause
-| Texte 2
-| 
+| Texte 2,
 | \pause
-| Texte 3
+| Texte 3,
 | \pause
-| Texte 4
-| \pause[3]
-| Texte 5
+| Texte 4.
 \end{lstlisting}
   \end{column}
   \begin{column}{0.35\textwidth}
-\rmfamily
-Texte 1
-\pause{}
-Texte 2
-
+\myex{
+Texte 1,
 \pause
-Texte 3
-\pause{}
-Texte 4
-\pause[3]
-Texte 5
+Texte 2,
+\pause
+Texte 3,
+\pause
+Texte 4.
+}
   \end{column}
 \end{columns}
 \end{frame}
@@ -211,12 +206,13 @@ Texte 5
 
 Deux commandes :
 \begin{itemize}
-  \item \lstinline?\only<pages>{contenu}? dévoile \lstinline?contenu? uniquement dans les \lstinline?pages? spécifiées,
-  \item \lstinline?\uncover<pages>{contenu}? fait de même, mais réserve l'espace non occupé lorsqu'il n'est pas affiché.
+  \item \lstinline?\only<pages>{contenu}? dévoile \lstinline?contenu? \bemph{uniquement} dans les \lstinline?pages? spécifiées,
+  \item \lstinline?\uncover<pages>{contenu}? fait de même, mais \bemph{réserve l'espace} non occupé lorsqu'il n'est pas affiché.
 \end{itemize}
 
-Le \lstinline?contenu? peut contenir n'importe quoi (texte, figures, mathématiques, etc.).
+Le \lstinline?contenu? peut être n'importe quoi (texte, figures, mathématiques, etc.).
 
+\medskip
 Les \lstinline?<pages>? sont définies par groupes :
 \begin{itemize}
   \item \lstinline?<n>? : la page $n$,
@@ -232,34 +228,51 @@ Les \lstinline?<pages>? sont définies par groupes :
 \begin{frame}[fragile]
   \frametitle{Animations avancées}
 
-Exemple avec \lstinline?\only? et \lstinline?\uncover? :
+Exemple avec \lstinline?\only? :
 \begin{columns}
-  \begin{column}{0.35\textwidth}
+  \begin{column}{0.40\textwidth}
 \begin{lstlisting}
-| Texte 1.
+| Texte 1,
 | 
-| \uncover<2->{
-|   Texte 2 ?
-|   \only<2-4>{Texte 3...}
-|   \uncover<3>{Texte 4 !}
-|   Texte 5.
-| }
-| \pause[5]
+| \only<2>{Texte 2 qui appara£\^{i}£t,}
+| 
+| Texte 3.
 \end{lstlisting}
   \end{column}
-  \begin{column}{0.60\textwidth}
-\rmfamily
-Texte 1.
+  \begin{column}{0.37\textwidth}
+\myex{
+Texte 1,
 
-\uncover<2->{
-  Texte 2 ?
-  \only<2-4>{Texte 3...}
-  \uncover<3>{Texte 4 !}
-  Texte 5.
+\only<2>{Texte 2 qui appara\^{i}t,}
+
+Texte 3.
 }
-\pause[5]
   \end{column}
 \end{columns}
+
+\bigskip
+Exemple avec \lstinline?\uncover? :
+\begin{columns}
+  \begin{column}{0.40\textwidth}
+\begin{lstlisting}
+| Texte 1,
+| 
+| \uncover<2>{Texte 2 qui appara£\^{i}£t,}
+| 
+| Texte 3.
+\end{lstlisting}
+  \end{column}
+  \begin{column}{0.37\textwidth}
+\myex{
+Texte 1,
+
+\uncover<2>{Texte 2 qui appara\^{i}t,}
+
+Texte 3.
+}
+  \end{column}
+\end{columns}
+
 \end{frame}
 
 
@@ -281,12 +294,13 @@ Exemple : \lstinline?\item<pages>?
 \end{itemize}\end{lstlisting}
   \end{column}
   \begin{column}{0.40\textwidth}
-\rmfamily
+\myex{
 \begin{itemize}
   \item<1,5> Premier élément
   \item<2,4-> Second élément
   \item<3-> Troisième élément
 \end{itemize}
+}
   \end{column}
 \end{columns}
 
@@ -326,14 +340,14 @@ Beaucoup de commandes TikZ acceptent aussi la syntaxe \lstinline?<pages>? pour c
 
 Il est possible d'utiliser des thèmes prédéfinis pour modifier l'apparence et les couleurs d'une présentation. On peut spécifier :
 \begin{itemize}
-  \item Un thème d'agencement avec \lstinline?\usetheme{theme}? :
+  \item Un \bemph{thème d'agencement} avec \lstinline?\usetheme{theme}? :
   \begin{itemize}
     \item style de la page de titre et agencement des diapos,
     \item forme et contenu des bandeaux,
     \item police, forme des puces, ...
   \end{itemize}
   Exemples : \lstinline?Warsaw?, \lstinline?Madrid?, \lstinline?Copenhagen?, \lstinline?CambridgeUS?...
-  \item Un thème de couleurs avec \lstinline?\usecolortheme{theme}? :
+  \item Un \bemph{thème de couleurs} avec \lstinline?\usecolortheme{theme}? :
   \begin{itemize}
     \item couleur du texte, des titres, du sommaire,
     \item couleur de fond, des blocs, des bandeaux...
@@ -370,6 +384,8 @@ Pour une liste des options modifiables, voir le WikiBooks \cite{wikibooksbeamer}
 \end{frame}
 
 
+
+\subsection{Exemples}
 
 \begin{frame}[fragile]
   \frametitle{Exemple de thème : CambridgeUS}
@@ -416,6 +432,8 @@ Pour une liste des options modifiables, voir le WikiBooks \cite{wikibooksbeamer}
 
 
 
+\subsection{Exercice}
+
 \begin{frame}[fragile]
   \frametitle{Exercice}
 
@@ -440,7 +458,8 @@ Une présentation simple :
     \maketitle
   \end{frame}
 
-  
+  % A partir d'ici,
+  % entrez ce que vous voulez...
   \section{£\`A£ propos de moi}
 
   \begin{frame}
