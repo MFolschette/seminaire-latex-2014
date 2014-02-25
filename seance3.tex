@@ -1,5 +1,5 @@
 \documentclass{beamer}
-
+\usepackage{etex}
 \input{preambule}
 
 \input{seance3_tikz_ex}
@@ -85,7 +85,7 @@ Large choix de type d'entrée:
 \texttt{manual}, \texttt{pdhthesis}, \texttt{techreport}, \texttt{unpublished}, \texttt{misc}...
 
 Exemple (fichier \texttt{.bib}):
-\begin{lstlisting}
+\begin{lstlisting}[language=BibTeX]
 @book{goossens93,
   author     = "Goossens, Michel and Mittlebach, Frank",
   title      = "The Latex Companion",
@@ -148,7 +148,7 @@ Exemple (fichier \texttt{.bib}):
 
 Créer un nouveau fichier nommé \texttt{biblio.bib} et contenant :
 
-\begin{lstlisting}
+\begin{lstlisting}[language=BibTeX]
 @article{greenwade93,
   author  = "Inconnu",
   title   = "Titre",
@@ -363,7 +363,7 @@ Utilisation :
   \frametitle{Définir des commandes simples}
 
 \begin{lstlisting}
-\newcommand{\£\meta{nomcommande}£}[£\meta{n}£]{£\meta{Corps de la commande}£}
+\newcommand{\£\meta{nomcommande}£}{£\meta{Corps de la commande}£}
 \end{lstlisting}
 À chaque fois que la commande créée est utilisée, elle est remplacée par son contenu.
 
