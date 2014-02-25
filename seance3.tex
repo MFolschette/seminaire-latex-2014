@@ -2,6 +2,8 @@
 
 \input{preambule}
 
+\input{seance3_tikz_ex}
+
 \title[Séminaire \LaTeX, séance 3]{Séminaire \LaTeX, séance 3: Utilisation avancée}
 \date{mardi 25 février 2014}
 
@@ -25,24 +27,29 @@
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Points abordés durant cette troisième séance}
-    \begin{itemize}
-            \item Bibliographie, 
-            \item commandes avancées, 
-            \item inclusion de figures à l'aide de différents outils, 
-            \item création d'un diaporama à l'aide de la classe Beamer, 
-            \item vos questions !
-        \end{itemize}
+  \begin{itemize}
+    \item Divers rappels : bibliographie, éditeurs alternatifs
+    \item Création de commandes
+    \item Inclusion de figures à l'aide de TikZ
+    \item Création d'un diaporama à l'aide de la classe Beamer
+    \item Vos questions !
+  \end{itemize}
 \end{frame}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% PART%% %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\part{Bibliographie}
+\part{Bibliographie avec BibTeX}
+
 
 %%%%%%%%%%
 
-\section{BibTeX}
+\section{Bibliographie avec BibTeX}
 
 %%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
@@ -56,62 +63,153 @@ La \emph{base de données} bibliographique est placée dans un fichier extérieu
 \medskip
 On inclut la bibliographie dans le document par les commandes :
 \begin{lstlisting}
-\bibliographystyle{plain}
-\bibliography{nom-biblio}
+\bibliographystyle{£\meta{style}£}    % Par exemple : plain, alpha, apalike, ...
+\bibliography{£\meta{biblio}£}        % Nom du fichier .bib (sans l'extension)
 \end{lstlisting}
-Il est possible d'inclure plusieurs fichiers \lstinline?.bib? :
+Il est possible d'inclure plusieurs biblios :
 \lstinline?\bibliography{biblio1,biblio2}?.
 
 \medskip
 On crée des références dans le document par la commande : \lstinline?\cite{...}?  \cite{latexcompanion}.
 \end{frame}
 
-%%%%%%%%%%
 
-\section{Exemple}
+%%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[fragile]
+\frametitle{Ajout de nouvelles entrées}
+
+Large choix de type d'entrée:
+\texttt{article}, \texttt{book}, \texttt{booklet}, \texttt{inproceedings},
+\texttt{manual}, \texttt{pdhthesis}, \texttt{techreport}, \texttt{unpublished}, \texttt{misc}...
+
+Exemple (fichier \texttt{.bib}):
+\begin{lstlisting}
+@book{goossens93,
+  author     = "Goossens, Michel and Mittlebach, Frank",
+  title      = "The Latex Companion",
+  year       = "1993",
+  publisher  = "Addison-Wesley",
+  address    = "Reading, Massachusetts"
+}
+
+@article{greenwade93,
+  author   = "Inconnu",
+  title    = "Titre",
+  year     = "1993",
+  journal  = "Nom du journal",
+  volume   = "14",
+  number   = "3",
+  pages    = "342--351"
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Types d'entrée}
+
+\begin{itemize}
+  \item \texttt{phdthesis} et \texttt{mastersthesis} : thèse de doctorat ou de master
+    \begin{itemize}
+      \item champs requis: \texttt{author, title, school, year}
+    \end{itemize}
+  \item \texttt{inproceedings} : article de conférence
+    \begin{itemize}
+      \item champs requis: \texttt{author, title, booktitle, year} 
+    \end{itemize}
+  \item \texttt{article} : article de journal
+    \begin{itemize}
+      \item champs requis: \texttt{author, title, journal, yearr} 
+    \end{itemize}
+  \item \texttt{book} : livre
+    \begin{itemize}
+      \item champs requis: \texttt{author/editor, title, publisher, year} 
+    \end{itemize}
+  \item \texttt{techreport} : rapport technique
+    \begin{itemize}
+      \item champs requis: \texttt{author, title, institution, year}
+    \end{itemize}
+  \item \texttt{misc} : document qui ne rentre dans aucune catégorie: \texttt{aucun} 
+    \begin{itemize}
+      \item aucun champ requis
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
 
 %%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
 \frametitle{Exercice}
 
-Créer un nouveau fichier \lstinline?.bib? nommé \lstinline?biblio.bib? et contenant : 
+Créer un nouveau fichier nommé \texttt{biblio.bib} et contenant :
 
 \begin{lstlisting}
 @article{greenwade93,
-    author  = "Inconnu",
-    title   = "Titre",
-    year    = "1993",
-    journal = "Nom du journal",
-    volume  = "14",
-    number  = "3",
-    pages   = "342--351"
+  author  = "Inconnu",
+  title   = "Titre",
+  year    = "1993",
+  journal = "Nom du journal",
+  volume  = "14",
+  number  = "3",
+  pages   = "342--351"
 }
 \end{lstlisting}
 
 Et y faire référence dans votre document principal:
 
 \begin{lstlisting}
-....
-\cite{greenwade93}
-....
-\bibliographystyle{plain} %ou style alpha
+...
+Blablabla vous r£\'e£f£\'e£rer £\`a£ \cite{greenwade93}, blablabla ...
+...
+\bibliographystyle{plain}    % Essayer aussi alpha et apalike
 \bibliography{biblio}
 \end{lstlisting}
 
 \end{frame}
 
+%%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Styles de bibliographie}
 
-\section{JabRef}
+Le style de bibliographie est spécifié par la ligne :
+
+\begin{lstlisting}
+\bibliographystyle{£\meta{style}£}
+\end{lstlisting}
+
+Un fichier de style bibliographique (\texttt{.bst}) est généralement fourni par le journal ou la revue.
+
+Sinon, il est possible d'utiliser les styles \texttt{abbrv-fr} ou \texttt{alpha-fr}.
+\end{frame}
 
 %%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Outils de gestion de bibliographie}
 
-La plupart des bases de données bibliographiques permettent d'exporter une entrée en BibTeX (Google Scholar inclus : Préférences Scholar,  Gestionnaire des bibliographies,  Afficher les liens permettant d'importer des citations dans BibTeX).
+La plupart du temps, vous n'écrirez pas à la main vos entrées bibliographiques, mais vous les trouverez sur
+\begin{center}
+\Huge \rotatebox[origin=c]{15}{\myheart}\bemph{Internet !}\rotatebox[origin=c]{-15}{\myheart}
+\end{center}
+La plupart des bases de données bibliographiques permettent d'exporter une entrée en BibTeX.
+
+\medskip
+Par exemple avec Google Scholar :
+\begin{itemize}
+  \item Paramètres de Google Scholar
+    \begin{itemize}
+      \item Gestionnaire des bibliographies
+        \begin{itemize}
+          \item Afficher les liens permettant d'importer des citations dans BibTeX.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 \medskip
 Utiliser un outil de gestion de bibliographie est nécessaire:
@@ -127,15 +225,101 @@ Utiliser un outil de gestion de bibliographie est nécessaire:
 \begin{frame}{Jabref (mutli-plateforme)}
 
 \vspace*{-0.5cm}
-\begin{figure}
-\centering
-\includegraphics[width=9cm]{img/jabref}
-\end{figure}
+\begin{figure} %debut de l'environnement figure
+\centering %figure centree
+\includegraphics[width=9cm]{img/jabref} % image de X cm de large
+%\caption{Titre de la figure} %titre de la figure
+%\label{titre_fig} %label de la figure (ex voir figure W)
+\end{figure} %fin de l'environnement figure
 
 \vspace*{-0.5cm}
 {\footnotesize Téléchargement: \url{http://jabref.sourceforge.net/}}
 
 \end{frame}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Mendeley (mutli-plateforme)}
+
+\begin{figure} %debut de l'environnement figure
+\centering %figure centree
+\includegraphics[width=9cm]{img/mendeley} % image de X cm de large
+%\caption{Titre de la figure} %titre de la figure
+%\label{titre_fig} %label de la figure (ex voir figure W)
+\end{figure} %fin de l'environnement figure
+
+{\footnotesize Téléchargement: \url{http://www.mendeley.com/}}
+
+\end{frame}
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Zotero (mutli-plateforme)}
+
+\begin{figure} %debut de l'environnement figure
+\centering %figure centree
+\includegraphics[width=8cm]{img/zotero} % image de X cm de large
+%\caption{Titre de la figure} %titre de la figure
+%\label{titre_fig} %label de la figure (ex voir figure W)
+\end{figure} %fin de l'environnement figure
+
+{\footnotesize Téléchargement: \url{http://www.zotero.org/}}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% SECTION %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Autres éditeurs \LaTeX}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+\section{Texniccenter}
+
+\begin{frame}{Texniccenter}
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/Texniccenter}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.texniccenter.org/}}
+
+\end{frame}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+\section{LyX}
+
+\begin{frame}{LyX}
+
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{img/LyXScreen_Linux_en}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.lyx.org/}}
+
+\end{frame}
+
+
+%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
+\section{Texmaker}
+
+\begin{frame}{Texmaker}
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/TexmakerView}
+\end{figure}
+
+{\footnotesize Téléchargement: \url{http://www.xm1math.net/texmaker/}}
+
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +327,7 @@ Utiliser un outil de gestion de bibliographie est nécessaire:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\part{Commandes avancées}
+\part{Utilisation avancée}
 
 \section{Commandes personnalisées}
 
@@ -155,24 +339,21 @@ Pourquoi?
   \item Simplification
 \end{itemize}
 
-Définition
-
+Définition :
 \begin{lstlisting}
 \newcommand{\ltsname}{Diagramme de Transisions £\'E£tiquet£\'e£}
 \newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\lts}[1][]{\left(Q^{#1},q_0^{#1},A_{#1},\rightarrow_{#1}\right)}
 \end{lstlisting}
-Utilisation
+Restrictions : pas de chiffres et pas de caractère « \MVAt{} »  % arobase
+
+\medskip
+Utilisation :
   \begin{itemize}
 \item \lstinline?\ltsname? \myexinline{\ltsname}
 \item \lstinline?\abs{\pi}? \myexinline{$\abs{\pi}$}
 \item \lstinline?\lts? \myexinline{$\lts$}\\
   \lstinline?\lts[n]? \myexinline{$\lts[n]$}
-\end{itemize}
-Restrictions
-\begin{itemize}
-  \item Pas de chiffres
-  \item Pas de @
 \end{itemize}
 \end{frame}
 
@@ -221,7 +402,7 @@ Soit $D$ un \ltsname.
 \begin{lstlisting}
 \newcommand{\£\meta{nomcommande}£}[£\meta{n}£]{£\meta{Corps avec \#1, ..., \#n}£}
 \end{lstlisting}
-On peut définir un certain nombre d'arguments obligatoires pour une commande, et y faire référence avec \lstinline?#1?, \lstinline?#2?, ... jusqu'à \lstinline?#n?.
+On peut définir un certain nombre d'arguments \bemph{obligatoires} pour une commande, et y faire référence avec \lstinline?#1?, \lstinline?#2?, ... jusqu'à \lstinline?#n?.
 
 \bigskip
 Exemple :
@@ -238,8 +419,8 @@ Résultat :
 \begin{column}{.45\textwidth}
 \begin{lstlisting}
 \begin{equation}
-  \abs{\sum_{n=i}^j n} \leq
-  \sum_{n=i}^j \abs{n}
+  \abs{\sum n} \leq
+  \sum \abs{n}
 \end{equation}
 \end{lstlisting}
 \end{column}
@@ -247,8 +428,8 @@ Résultat :
 \begin{column}{.45\textwidth}
 \myex{%
 \begin{equation}
-  \abs{\sum_{n=i}^j n} \leq
-  \sum_{n=i}^j \abs{n}
+  \abs{\sum n} \leq
+  \sum \abs{n}
 \end{equation}
 }
 \end{column}
@@ -264,8 +445,8 @@ Résultat :
 \begin{lstlisting}
 \newcommand{\£\meta{nomcommande}£}[£\meta{n}£][£\meta{Valeur par d£\'e£faut}£]{£\meta{Corps avec \#1, ..., \#n}£}
 \end{lstlisting}
-On peut aussi définir une valeur par défaut pour le premier argument, qui sera utilisée quand cet argument n'est pas précisé.
-Il faut alors écrire le premier argument entre crochets.
+On peut aussi définir une valeur par défaut pour le \bemph{premier} argument, qui sera utilisée quand cet argument n'est pas précisé.
+Au moment de l'utilisation, il faut écrire le premier argument \bemph{entre crochets}.
 
 \bigskip
 Exemple :
@@ -283,6 +464,7 @@ Résultat :
 \begin{equation}
   \lts[n]
 \end{equation}
+
 \begin{equation}
   \lts
 \end{equation}
@@ -294,6 +476,7 @@ Résultat :
 \begin{equation}
   \lts[n]
 \end{equation}
+
 \begin{equation}
   \lts
 \end{equation}
@@ -443,6 +626,8 @@ Après :
 \end{center}
 \end{frame}
 
+\section{Erreurs de compilation courantes}
+
 \begin{frame}[fragile]
   \frametitle{Erreurs de compilation courantes}
 
@@ -482,64 +667,15 @@ Faute de frappe dans une commande, ou package manquant :
 \end{lstlisting}
 Caractère math utilisé hors du mode math (ex: \_) :
 \begin{lstlisting}[backgroundcolor=\color{red!20}]
-Ouvrir le fichier ex_1.txt
+Les donn£\'e£es sont stock£\'e£es dans le fichier ex_1.txt
 \end{lstlisting}\vspace*{-.85em}
 \begin{lstlisting}[backgroundcolor=\color{green!20}]
-Ouvrir le fichier ex\_1.txt
+Les donn£\'e£es sont stock£\'e£es dans le fichier ex\_1.txt
 \end{lstlisting}
 
 \end{frame}
 
 \setbeamercovered{invisible}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% SECTION %%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Autres éditeurs \LaTeX}
-
-
-%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Texniccenter}
-
-\begin{figure}
-\centering
-\includegraphics[width=9cm]{img/Texniccenter}
-\end{figure}
-
-{\footnotesize Téléchargement: \url{http://www.texniccenter.org/}}
-
-\end{frame}
-
-
-%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
-
-\begin{frame}{LyX}
-
-\begin{figure}
-\centering
-\includegraphics[width=8cm]{img/LyXScreen_Linux_en}
-\end{figure}
-
-{\footnotesize Téléchargement: \url{http://www.lyx.org/}}
-
-\end{frame}
-
-
-%%%%%%%%% SLIDE %%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Texmaker}
-
-\begin{figure}
-\centering
-\includegraphics[width=9cm]{img/TexmakerView}
-\end{figure}
-
-{\footnotesize Téléchargement: \url{http://www.xm1math.net/texmaker/}}
-
-\end{frame}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% PART%% %%%%%%%%%%%%%%
